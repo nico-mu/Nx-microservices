@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "swipper": "apps/swipper",
+    "swipper-e2e": "apps/swipper-e2e"
+  }
+}
