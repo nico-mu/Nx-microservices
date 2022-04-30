@@ -7,7 +7,8 @@
       "executor": "@nrwl/cypress:cypress",
       "options": {
         "cypressConfig": "apps/swipper-e2e/cypress.json",
-        "devServerTarget": "swipper:serve:development"
+        "devServerTarget": "swipper:serve:development",
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {

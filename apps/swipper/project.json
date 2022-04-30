@@ -63,6 +63,7 @@
       },
       "defaultConfiguration": "development",
       "options": {
+        "browserTarget": "swipper:build:production",
         "proxyConfig": "apps/swipper/proxy.conf.json"
       }
     },
