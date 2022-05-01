@@ -30,5 +30,13 @@
       </div>
     </div>
     <button>Login</button>
+    <div *ngFor="let user of $users | async">
+      <div>
+        <p>{{ user.id }}</p>
+        <p>{{ user.name }}</p>
+        <p>{{ user.password_hash }}</p>
+        <p>{{ user.email }}</p>
+      </div>
+    </div>
   </form>
 </div>

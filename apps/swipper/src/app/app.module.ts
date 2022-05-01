@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { UiModule } from '@swipper/ui';
+import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([]),
+    UiModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

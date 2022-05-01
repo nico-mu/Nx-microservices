@@ -6,7 +6,7 @@
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "start": "nx serve",
-    "build": "nx build",
+    "build": "nx affected:build --base=main",
     "test": "nx test",
     "dump-postgres": "./scripts/database/dump.sh"
   },

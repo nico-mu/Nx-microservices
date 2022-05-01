@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { UserService } from '../user.service';
+import { User } from '@prisma/client';
 
 @Component({
   selector: 'swipper-login',
@@ -11,11 +14,13 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   returnUrl?: string;
   submitted = false;
+  $users!: Observable<User[]>;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute
+    private readonly formBuilder: FormBuilder,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly userService: UserService
   ) {}
 
   ngOnInit() {
@@ -32,7 +37,7 @@ export class LoginComponent implements OnInit {
       ],
       confirmPassword: ['', [Validators.required]],
     });
-
+    this.$users = this.userService.getUsers();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 

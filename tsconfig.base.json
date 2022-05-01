@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@swipper/api-interfaces": ["libs/api-interfaces/src/index.ts"],
-      "@swipper/models": ["libs/models/src/index.ts"]
+      "@swipper/models": ["libs/models/src/index.ts"],
+      "@swipper/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
