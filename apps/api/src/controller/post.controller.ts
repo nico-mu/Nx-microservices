@@ -8,6 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { Prisma, Post as PostModel } from '@prisma/client';
+import { Observable } from 'rxjs';
 import { PostService } from '../services/post.service';
 
 @Controller('posts')
@@ -15,30 +16,30 @@ export class PostController {
   constructor(private postService: PostService) {}
 
   @Get()
-  async findAll(): Promise<PostModel[]> {
+  findAll(): Observable<PostModel[]> {
     return this.postService.posts({ orderBy: { id: 'desc' } });
   }
 
   @Get(':id')
-  async findOne(@Param() params: { id: number }): Promise<PostModel> {
+  findOne(@Param() params: { id: number }): Observable<PostModel> {
     return this.postService.post({ id: params.id });
   }
 
   @Post()
-  async create(@Body() body: Prisma.PostCreateInput): Promise<PostModel> {
+  create(@Body() body: Prisma.PostCreateInput): Observable<PostModel> {
     return this.postService.createPost(body);
   }
 
   @Delete(':id')
-  async delete(@Param() params): Promise<PostModel> {
+  delete(@Param() params): Observable<PostModel> {
     return this.postService.deletePost({ id: params.id });
   }
 
   @Put(':id')
-  async update(
+  update(
     @Param() params: { id: number },
     @Body() body: Prisma.PostUpdateInput
-  ): Promise<PostModel> {
+  ): Observable<PostModel> {
     return this.postService.updatePost({
       where: { id: params.id },
       data: body,

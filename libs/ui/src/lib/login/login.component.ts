@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { UserService } from '../user.service';
-import { User } from '@prisma/client';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'swipper-login',
@@ -14,30 +12,19 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   returnUrl?: string;
   submitted = false;
-  $users!: Observable<User[]>;
 
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private readonly userService: UserService
+    private readonly authService: AuthService
   ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(20),
-        ],
-      ],
-      confirmPassword: ['', [Validators.required]],
+      password: ['', Validators.required],
     });
-    this.$users = this.userService.getUsers();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
@@ -54,6 +41,15 @@ export class LoginComponent implements OnInit {
     if (this.loginForm?.invalid) {
       return;
     }
-    this.router.navigate([this.returnUrl]);
+    this.authService
+      .loginWithName(
+        this.formControls['username'].value,
+        this.formControls['password'].value
+      )
+      .subscribe((data) => {
+        if (data.id) {
+          this.router.navigate([this.returnUrl]);
+        }
+      });
   }
 }

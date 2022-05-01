@@ -1,1 +1,34 @@
-<p>register works!</p>
+<div>
+  <h1>Register</h1>
+  <form [formGroup]="registerForm" (submit)="onSubmit()">
+    <div>
+      <label for="username">Username</label>
+      <input formControlName="username" />
+      <div *ngIf="!this.isValidForm('username') && this.submitted">
+        Please provide an username.
+      </div>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input formControlName="email" type="email" />
+      <div *ngIf="!this.isValidForm('email') && this.submitted">
+        Please provide an email.
+      </div>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input formControlName="password" type="password" />
+      <div *ngIf="!this.isValidForm('password') && this.submitted">
+        Please provide a password.
+      </div>
+    </div>
+    <div>
+      <label for="confirmPassword">Confirm Password</label>
+      <input formControlName="confirmPassword" type="password" />
+      <div *ngIf="!this.isValidForm('confirmPassword') && this.submitted">
+        Please confirm your password.
+      </div>
+    </div>
+    <button>Register</button>
+  </form>
+</div>

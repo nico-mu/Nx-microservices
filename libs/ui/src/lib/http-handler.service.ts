@@ -12,19 +12,19 @@ export abstract class HttpHandlerService {
     this.http = http;
   }
 
-  public get<T>(url: string): Observable<T> {
+  protected get<T>(url: string): Observable<T> {
     return this.http.get<T>(`${this.API_URL}/${url}`);
   }
 
-  public post<T>(url: string, body: unknown): Observable<T> {
+  protected post<T>(url: string, body: unknown): Observable<T> {
     return this.http.post<T>(`${this.API_URL}/${url}`, body);
   }
 
-  public put<T>(url: string, body: unknown): Observable<T> {
+  protected put<T>(url: string, body: unknown): Observable<T> {
     return this.http.put<T>(`${this.API_URL}/${url}`, body);
   }
 
-  public delete<T>(url: string): Observable<T> {
+  protected delete<T>(url: string): Observable<T> {
     return this.http.delete<T>(`${this.API_URL}/${url}`);
   }
 }

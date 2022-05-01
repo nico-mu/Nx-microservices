@@ -1,7 +1,11 @@
 import { PrismaClient, Role } from '@prisma/client';
+import * as bycrpt from 'bcrypt';
+
 const prisma = new PrismaClient();
 
 async function main() {
+  const salt = await bycrpt.genSalt();
+  const alicePw = await bycrpt.hash('alice', salt);
   const alice = await prisma.user.upsert({
     where: {
       email: 'alice@mail.com',
@@ -9,8 +13,8 @@ async function main() {
     update: {},
     create: {
       email: 'alice@mail.com',
-      name: 'Alice',
-      password_hash: "alice's password",
+      name: 'alice',
+      password_hash: alicePw,
       posts: {
         create: {
           title: 'Hello World!',
@@ -19,13 +23,14 @@ async function main() {
     },
   });
 
+  const bobPw = await bycrpt.hash('bob', salt);
   const bob = await prisma.user.upsert({
     where: { email: 'bob@mail.com' },
     update: {},
     create: {
       email: 'bob@mail.com',
-      name: 'Bob',
-      password_hash: "bob's password",
+      name: 'bob',
+      password_hash: bobPw,
       posts: {
         create: [
           {
@@ -39,6 +44,7 @@ async function main() {
     },
   });
 
+  const nicoPw = await bycrpt.hash('nico', salt);
   const nico = await prisma.user.upsert({
     where: {
       email: 'nico@mail.com',
@@ -46,13 +52,27 @@ async function main() {
     update: {},
     create: {
       email: 'nico@mail.com',
-      name: 'Nico',
-      password_hash: 'wadawubfdawf1234$$%\\//',
+      name: 'nico',
+      password_hash: nicoPw,
       role: Role.ADMIN,
     },
   });
 
-  console.log({ alice, bob, nico });
+  const adminPw = await bycrpt.hash('admin', salt);
+  const admin = await prisma.user.upsert({
+    where: {
+      email: 'admin@admin.com',
+    },
+    update: {},
+    create: {
+      email: 'admin@admin.com',
+      name: 'admin',
+      password_hash: adminPw,
+      role: Role.ADMIN,
+    },
+  });
+
+  console.log({ alice, bob, nico, admin });
 }
 
 main()

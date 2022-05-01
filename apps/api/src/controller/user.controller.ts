@@ -8,6 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { Prisma, User as UserModel } from '@prisma/client';
+import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
 
 @Controller('users')
@@ -15,30 +16,30 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Get()
-  async findAll(): Promise<UserModel[]> {
+  findAll(): Observable<UserModel[]> {
     return this.userService.users({ orderBy: { id: 'desc' } });
   }
 
   @Get(':id')
-  async findOne(@Param() params: { id: number }): Promise<UserModel> {
+  findOne(@Param() params: { id: number }): Observable<UserModel> {
     return this.userService.user({ id: params.id });
   }
 
   @Post()
-  async create(@Body() body: Prisma.UserCreateInput): Promise<UserModel> {
+  create(@Body() body: Prisma.UserCreateInput): Observable<UserModel> {
     return this.userService.createUser(body);
   }
 
   @Delete(':id')
-  async delete(@Param() params): Promise<UserModel> {
+  delete(@Param() params): Observable<UserModel> {
     return this.userService.deleteUser({ id: params.id });
   }
 
   @Put(':id')
-  async update(
+  update(
     @Param() params: { id: number },
     @Body() body: Prisma.UserUpdateInput
-  ): Promise<UserModel> {
+  ): Observable<UserModel> {
     return this.userService.updateUser({
       where: { id: params.id },
       data: body,

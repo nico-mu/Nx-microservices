@@ -9,34 +9,12 @@
       </div>
     </div>
     <div>
-      <label for="email">Email</label>
-      <input formControlName="email" />
-      <div *ngIf="!this.isValidForm('email') && this.submitted">
-        Please provide an email.
-      </div>
-    </div>
-    <div>
       <label for="password">Password</label>
-      <input formControlName="password" />
+      <input formControlName="password" type="password" />
       <div *ngIf="!this.isValidForm('password') && this.submitted">
         Please provide a password.
       </div>
     </div>
-    <div>
-      <label for="confirmPassword">Confirm Password</label>
-      <input formControlName="confirmPassword" />
-      <div *ngIf="!this.isValidForm('confirmPassword') && this.submitted">
-        Please confirm your password.
-      </div>
-    </div>
     <button>Login</button>
-    <div *ngFor="let user of $users | async">
-      <div>
-        <p>{{ user.id }}</p>
-        <p>{{ user.name }}</p>
-        <p>{{ user.password_hash }}</p>
-        <p>{{ user.email }}</p>
-      </div>
-    </div>
   </form>
 </div>

@@ -1,54 +1,101 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
+import { from, Observable } from 'rxjs';
+import { HashingService } from './hashing.service';
 import { PrismaService } from './prisma.service';
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private hashing: HashingService) {}
 
-  user = async (
+  user(
     userWhereUniqueInput: Prisma.UserWhereUniqueInput
-  ): Promise<User | null> => {
-    return this.prisma.user.findUnique({ where: userWhereUniqueInput });
-  };
+  ): Observable<User | null> {
+    return from(this.prisma.user.findUnique({ where: userWhereUniqueInput }));
+  }
 
-  users = async (params: {
+  users(params: {
     skip?: number;
     take?: number;
     cursor?: Prisma.UserWhereUniqueInput;
     where?: Prisma.UserWhereInput;
     orderBy?: Prisma.UserOrderByWithRelationInput;
-  }): Promise<User[]> => {
+  }): Observable<User[]> {
     const { skip, take, cursor, where, orderBy } = params;
-    return this.prisma.user.findMany({
-      skip,
-      take,
-      cursor,
-      where,
-      orderBy,
-    });
-  };
+    return from(
+      this.prisma.user.findMany({
+        skip,
+        take,
+        cursor,
+        where,
+        orderBy,
+      })
+    );
+  }
 
-  createUser = async (data: Prisma.UserCreateInput): Promise<User> => {
-    return this.prisma.user.create({
-      data,
+  createUser(data: Prisma.UserCreateInput): Observable<User> {
+    return new Observable<User>((observer) => {
+      this.hashing.hash(data.password_hash as string).subscribe((hash) => {
+        data.password_hash = hash;
+        this.prisma.user
+          .create({
+            data,
+          })
+          .then((user) => {
+            observer.next(user);
+            observer.complete();
+          })
+          .catch((err) => {
+            observer.error(err);
+          });
+      });
     });
-  };
+  }
 
-  updateUser = async (params: {
+  updateUser(params: {
     where: Prisma.UserWhereUniqueInput;
     data: Prisma.UserUpdateInput;
-  }): Promise<User> => {
+  }): Observable<User> {
     const { where, data } = params;
-    return this.prisma.user.update({
-      data,
-      where,
+    return new Observable<User>((observer) => {
+      if (data.password_hash) {
+        this.hashing.hash(data.password_hash as string).subscribe((hash) => {
+          data.password_hash = hash;
+          this.prisma.user
+            .update({
+              data,
+              where,
+            })
+            .then((user) => {
+              observer.next(user);
+              observer.complete();
+            })
+            .catch((err) => {
+              observer.error(err);
+            });
+        });
+      } else {
+        this.prisma.user
+          .update({
+            data,
+            where,
+          })
+          .then((user) => {
+            observer.next(user);
+            observer.complete();
+          })
+          .catch((err) => {
+            observer.error(err);
+          });
+      }
     });
-  };
+  }
 
-  deleteUser = async (where: Prisma.UserWhereUniqueInput): Promise<User> => {
-    return this.prisma.user.delete({
-      where,
-    });
-  };
+  deleteUser(where: Prisma.UserWhereUniqueInput): Observable<User> {
+    return from(
+      this.prisma.user.delete({
+        where,
+      })
+    );
+  }
 }

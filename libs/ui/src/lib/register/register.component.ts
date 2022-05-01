@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '@prisma/client';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'swipper-register',
@@ -6,7 +10,58 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  constructor() {}
+  registerForm!: FormGroup;
+  returnUrl?: string;
+  submitted = false;
 
-  ngOnInit(): void {}
+  constructor(
+    private readonly formBuilder: FormBuilder,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly authService: AuthService
+  ) {}
+
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(20),
+        ],
+      ],
+      confirmPassword: ['', [Validators.required]],
+    });
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+
+  get formControls() {
+    return this.registerForm.controls;
+  }
+
+  isValidForm(name: string) {
+    return this.formControls[name].errors ? false : true;
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.registerForm?.invalid) {
+      return;
+    }
+    const input = this.registerForm.value;
+    this.authService
+      .register({
+        email: input.email,
+        name: input.username,
+        password_hash: input.password,
+      } as User)
+      .subscribe((data) => {
+        if (data.id) {
+          this.router.navigate([this.returnUrl]);
+        }
+      });
+  }
 }
