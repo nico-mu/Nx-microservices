@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import { Observable } from 'rxjs';
 import { HttpHandlerService } from './http-handler.service';
 
@@ -20,7 +20,7 @@ export class AuthService extends HttpHandlerService {
     return this.post<User>('login', { name, password_hash: password } as User);
   }
 
-  public register(user: User): Observable<User> {
+  public register(user: Prisma.UserCreateInput): Observable<User> {
     return this.post<User>('register', user);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -51,14 +51,14 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm?.invalid) {
       return;
     }
-    const input = this.registerForm.value;
     this.authService
       .register({
-        email: input.email,
-        name: input.username,
-        password_hash: input.password,
-      } as User)
+        email: this.formControls['email'].value,
+        name: this.formControls['username'].value,
+        password_hash: this.formControls['password'].value,
+      } as Prisma.UserCreateInput)
       .subscribe((data) => {
+        console.log(data);
         if (data.id) {
           this.router.navigate([this.returnUrl]);
         }
