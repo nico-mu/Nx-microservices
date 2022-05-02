@@ -38,6 +38,8 @@ jobs:
         run: |
           yarn install --frozen-lockfile
 
+      - run: npx prisma generate --schema ./libs/models/src/prisma/schema.prisma
+
       - run: npx nx workspace-lint
 
       - run: npx nx format:check
