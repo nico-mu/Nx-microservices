@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { UserDTO } from '@swipper/api-interfaces';
 import { Observable, of } from 'rxjs';
@@ -33,7 +33,7 @@ export class AuthController {
                 } else {
                   observer.next({
                     error: {
-                      code: 401,
+                      code: HttpStatus.UNAUTHORIZED,
                       message: 'Invalid Password',
                     },
                   });
@@ -54,7 +54,7 @@ export class AuthController {
       return this.userService.createUser(body);
     }
     return of({
-      error: { code: 422, message: 'Missing Parameter' },
+      error: { code: HttpStatus.BAD_REQUEST, message: 'Missing Parameter' },
     } as UserDTO);
   }
 }

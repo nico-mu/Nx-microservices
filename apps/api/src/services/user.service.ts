@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
 import { UserDTO } from '@swipper/api-interfaces';
 import { from, Observable } from 'rxjs';
@@ -25,7 +25,7 @@ export class UserService {
           console.log(error);
           observer.next({
             error: {
-              code: 404,
+              code: HttpStatus.NOT_FOUND,
               message: 'The requested resource was not found.',
             },
           });
@@ -67,7 +67,10 @@ export class UserService {
           })
           .catch(() => {
             observer.next({
-              error: { code: 422, message: 'User already exists' },
+              error: {
+                code: HttpStatus.UNPROCESSABLE_ENTITY,
+                message: 'User already exists',
+              },
             } as UserDTO);
             observer.complete();
           });
@@ -96,7 +99,7 @@ export class UserService {
             .catch(() => {
               observer.next({
                 error: {
-                  code: 404,
+                  code: HttpStatus.NOT_FOUND,
                   message: 'The requested resource was not found.',
                 },
               });
@@ -116,7 +119,7 @@ export class UserService {
           .catch(() => {
             observer.next({
               error: {
-                code: 404,
+                code: HttpStatus.NOT_FOUND,
                 message: 'The requested resource was not found.',
               },
             });
@@ -139,7 +142,7 @@ export class UserService {
         .catch(() => {
           observer.next({
             error: {
-              code: 404,
+              code: HttpStatus.NOT_FOUND,
               message: 'The requested resource was not found.',
             },
           });

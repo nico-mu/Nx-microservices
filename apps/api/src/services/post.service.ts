@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { Prisma, Post } from '@prisma/client';
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { Post, Prisma } from '@prisma/client';
 import { PostDTO } from '@swipper/api-interfaces';
 import { from, Observable } from 'rxjs';
 import { PrismaService } from './prisma.service';
@@ -25,7 +25,7 @@ export class PostService {
           observer.next({
             post: {},
             error: {
-              code: 404,
+              code: HttpStatus.NOT_FOUND,
               message: 'The requested resource was not found.',
             },
           } as PostDTO);
@@ -70,7 +70,7 @@ export class PostService {
           observer.next({
             post: {},
             error: {
-              code: 422,
+              code: HttpStatus.UNPROCESSABLE_ENTITY,
               message: 'The post already exists.',
             },
           } as PostDTO);
@@ -101,7 +101,7 @@ export class PostService {
           observer.next({
             post: {},
             error: {
-              code: 404,
+              code: HttpStatus.NOT_FOUND,
               message: 'The requested resource was not found.',
             },
           } as PostDTO);
@@ -127,7 +127,7 @@ export class PostService {
           observer.next({
             post: {},
             error: {
-              code: 404,
+              code: HttpStatus.NOT_FOUND,
               message: 'The requested resource was not found.',
             },
           } as PostDTO);
