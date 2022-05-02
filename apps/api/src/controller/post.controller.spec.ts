@@ -1,136 +1,117 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { Role, User } from '@prisma/client';
-import { UserDTO } from '@swipper/api-interfaces';
+import { Post } from '@prisma/client';
+import { PostDTO } from '@swipper/api-interfaces';
 import { Observable } from 'rxjs';
-import { HashingService } from '../services/hashing.service';
+import { PostService } from '../services/post.service';
 import { PrismaService } from '../services/prisma.service';
-import { UserService } from '../services/user.service';
-import { UserController } from './user.controller';
+import { PostController } from './post.controller';
 
-describe('UserController', () => {
-  let userController: UserController;
-  let userService: UserService;
+describe('PostController', () => {
+  let postController: PostController;
+  let postService: PostService;
+
+  const post: Post = {
+    id: 1,
+    title: 'first post',
+    published: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    authorId: 1,
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [UserService, PrismaService, HashingService],
+      providers: [PostService, PrismaService],
     }).compile();
-    userService = module.get<UserService>(UserService);
-    userController = new UserController(userService);
+    postService = module.get<PostService>(PostService);
+    postController = new PostController(postService);
   });
 
   describe('findAll', () => {
-    it('should return an array of Users', async () => {
-      const result: Observable<User[]> = new Observable((observer) => {
+    it('should return an array of Posts', async () => {
+      const result: Observable<Post[]> = new Observable((observer) => {
         observer.next([
           {
             id: 1,
-            email: 'first@mail.com',
-            password_hash: 'password',
+            title: 'first post',
+            published: true,
             createdAt: new Date(),
-            name: 'first',
-            role: Role.USER,
+            updatedAt: new Date(),
+            authorId: 1,
           },
           {
             id: 2,
-            email: 'second@mail.com',
-            password_hash: 'second',
+            title: 'second post',
+            published: true,
             createdAt: new Date(),
-            name: 'second',
-            role: Role.USER,
+            updatedAt: new Date(),
+            authorId: 1,
           },
         ]);
       });
-      jest.spyOn(userService, 'users').mockImplementation(() => result);
+      jest.spyOn(postService, 'posts').mockImplementation(() => result);
 
-      expect(await userController.findAll()).toBe(result);
+      expect(await postController.findAll()).toBe(result);
     });
   });
 
   describe('findOne', () => {
-    it('should return a User', async () => {
-      const result: Observable<UserDTO> = new Observable((observer) => {
+    it('should return a Post', async () => {
+      const result: Observable<PostDTO> = new Observable((observer) => {
         observer.next({
-          user: {
-            id: 1,
-            email: 'first@mail.com',
-            password_hash: 'password',
-            createdAt: new Date(),
-            name: 'first',
-            role: Role.USER,
-          },
+          post: post,
           error: {},
-        } as UserDTO);
+        } as PostDTO);
       });
-      jest.spyOn(userService, 'user').mockImplementation(() => result);
+      jest.spyOn(postService, 'post').mockImplementation(() => result);
 
-      expect(await userController.findOne(1)).toBe(result);
+      expect(await postController.findOne(1)).toBe(result);
     });
   });
 
   describe('create', () => {
-    it('should return a User', async () => {
-      const result: Observable<UserDTO> = new Observable((observer) => {
+    it('should return a Post', async () => {
+      const result: Observable<PostDTO> = new Observable((observer) => {
         observer.next({
-          user: {
-            id: 1,
-            email: 'first@mail.com',
-            password_hash: 'password',
-            createdAt: new Date(),
-            name: 'first',
-            role: Role.USER,
-          },
-        } as UserDTO);
+          post: post,
+        } as PostDTO);
       });
-      jest.spyOn(userService, 'createUser').mockImplementation(() => result);
+      jest.spyOn(postService, 'createPost').mockImplementation(() => result);
 
       expect(
-        await userController.create({
-          name: 'first',
-          email: 'first@mail.com',
-          password_hash: 'password',
+        await postController.create({
+          title: 'first post',
+          published: true,
         })
       ).toBe(result);
     });
   });
 
   describe('update', () => {
-    it('should return a User', async () => {
-      const result: Observable<UserDTO> = new Observable((observer) => {
+    it('should return a Post', async () => {
+      const result: Observable<PostDTO> = new Observable((observer) => {
+        const updatedPost = post;
+        updatedPost.title = 'updated post';
         observer.next({
-          user: {
-            id: 1,
-            email: 'first@mail.com',
-            password_hash: 'password',
-            createdAt: new Date(),
-            name: 'first',
-            role: Role.USER,
-          },
-        } as UserDTO);
+          post: post,
+        } as PostDTO);
       });
-      jest.spyOn(userService, 'updateUser').mockImplementation(() => result);
+      jest.spyOn(postService, 'updatePost').mockImplementation(() => result);
 
-      expect(userController.update(1, { name: 'first' })).toBe(result);
+      expect(postController.update(1, { title: 'updated post' })).toBe(result);
     });
   });
 
   describe('delete', () => {
-    it('should return a User', async () => {
-      const result: Observable<UserDTO> = new Observable((observer) => {
+    it('should return a Post', async () => {
+      const result: Observable<PostDTO> = new Observable((observer) => {
         observer.next({
-          user: {
-            id: 1,
-            email: 'first@mail.com',
-            password_hash: 'password',
-            createdAt: new Date(),
-            name: 'first',
-            role: Role.USER,
-          },
-        } as UserDTO);
+          post: post,
+        } as PostDTO);
       });
-      jest.spyOn(userService, 'deleteUser').mockImplementation(() => result);
+      jest.spyOn(postService, 'deletePost').mockImplementation(() => result);
 
-      expect(userController.delete(1)).toBe(result);
+      expect(postController.delete(1)).toBe(result);
     });
   });
 });
