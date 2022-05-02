@@ -3,7 +3,9 @@ import {
   Controller,
   Delete,
   Get,
+  HttpStatus,
   Param,
+  ParseIntPipe,
   Post,
   Put,
 } from '@nestjs/common';
@@ -22,8 +24,14 @@ export class UserController {
   }
 
   @Get(':id')
-  findOne(@Param() params: { id: number }): Observable<UserDTO> {
-    return this.userService.user({ id: params.id });
+  findOne(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })
+    )
+    id: number
+  ): Observable<UserDTO> {
+    return this.userService.user({ id });
   }
 
   @Post()
@@ -32,17 +40,27 @@ export class UserController {
   }
 
   @Delete(':id')
-  delete(@Param() params): Observable<UserDTO> {
-    return this.userService.deleteUser({ id: params.id });
+  delete(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })
+    )
+    id: number
+  ): Observable<UserDTO> {
+    return this.userService.deleteUser({ id });
   }
 
   @Put(':id')
   update(
-    @Param() params: { id: number },
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })
+    )
+    id: number,
     @Body() body: Prisma.UserUpdateInput
   ): Observable<UserDTO> {
     return this.userService.updateUser({
-      where: { id: params.id },
+      where: { id },
       data: body,
     });
   }

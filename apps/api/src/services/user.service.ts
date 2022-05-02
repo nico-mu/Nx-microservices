@@ -18,16 +18,18 @@ export class UserService {
           where: userWhereUniqueInput,
         })
         .then((user) => {
-          observer.next({ user: user });
+          observer.next({ user: user, error: {} } as UserDTO);
           observer.complete();
         })
-        .catch(() => {
-          observer.error({
+        .catch((error) => {
+          console.log(error);
+          observer.next({
             error: {
               code: 404,
               message: 'The requested resource was not found.',
             },
           });
+          observer.complete();
         });
     });
   }
@@ -88,16 +90,17 @@ export class UserService {
               where,
             })
             .then((user) => {
-              observer.next({ user: user });
+              observer.next({ user: user, error: {} } as UserDTO);
               observer.complete();
             })
             .catch(() => {
-              observer.error({
+              observer.next({
                 error: {
                   code: 404,
                   message: 'The requested resource was not found.',
                 },
               });
+              observer.complete();
             });
         });
       } else {
@@ -111,12 +114,13 @@ export class UserService {
             observer.complete();
           })
           .catch(() => {
-            observer.error({
+            observer.next({
               error: {
                 code: 404,
                 message: 'The requested resource was not found.',
               },
             });
+            observer.complete();
           });
       }
     });
@@ -129,16 +133,17 @@ export class UserService {
           where,
         })
         .then((user) => {
-          observer.next({ user: user });
+          observer.next({ user: user, error: {} } as UserDTO);
           observer.complete();
         })
         .catch(() => {
-          observer.error({
+          observer.next({
             error: {
               code: 404,
               message: 'The requested resource was not found.',
             },
           });
+          observer.complete();
         });
     });
   }

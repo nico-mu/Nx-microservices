@@ -17,17 +17,19 @@ export class PostService {
         .then((post) => {
           observer.next({
             post,
-            error: null,
-          });
+            error: {},
+          } as PostDTO);
+          observer.complete();
         })
         .catch(() => {
           observer.next({
-            post: null,
+            post: {},
             error: {
               code: 404,
               message: 'The requested resource was not found.',
             },
-          });
+          } as PostDTO);
+          observer.complete();
         });
     });
   }
@@ -60,17 +62,19 @@ export class PostService {
         .then((post) => {
           observer.next({
             post,
-            error: null,
-          });
+            error: {},
+          } as PostDTO);
+          observer.complete();
         })
         .catch(() => {
           observer.next({
-            post: null,
+            post: {},
             error: {
               code: 422,
               message: 'The post already exists.',
             },
-          });
+          } as PostDTO);
+          observer.complete();
         });
     });
   }
@@ -89,17 +93,19 @@ export class PostService {
         .then((post) => {
           observer.next({
             post,
-            error: null,
-          });
+            error: {},
+          } as PostDTO);
+          observer.complete();
         })
         .catch(() => {
           observer.next({
-            post: null,
+            post: {},
             error: {
               code: 404,
               message: 'The requested resource was not found.',
             },
-          });
+          } as PostDTO);
+          observer.complete();
         });
     });
   }
@@ -113,17 +119,19 @@ export class PostService {
         .then((post) => {
           observer.next({
             post,
-            error: null,
-          });
+            error: {},
+          } as PostDTO);
+          observer.complete();
         })
         .catch(() => {
           observer.next({
-            post: null,
+            post: {},
             error: {
               code: 404,
               message: 'The requested resource was not found.',
             },
-          });
+          } as PostDTO);
+          observer.complete();
         });
     });
   }

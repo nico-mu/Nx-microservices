@@ -3,7 +3,9 @@ import {
   Controller,
   Delete,
   Get,
+  HttpStatus,
   Param,
+  ParseIntPipe,
   Post,
   Put,
 } from '@nestjs/common';
@@ -22,8 +24,14 @@ export class PostController {
   }
 
   @Get(':id')
-  findOne(@Param() params: { id: number }): Observable<PostDTO> {
-    return this.postService.post({ id: params.id });
+  findOne(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })
+    )
+    id: number
+  ): Observable<PostDTO> {
+    return this.postService.post({ id });
   }
 
   @Post()
@@ -32,17 +40,27 @@ export class PostController {
   }
 
   @Delete(':id')
-  delete(@Param() params): Observable<PostDTO> {
-    return this.postService.deletePost({ id: params.id });
+  delete(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })
+    )
+    id: number
+  ): Observable<PostDTO> {
+    return this.postService.deletePost({ id });
   }
 
   @Put(':id')
   update(
-    @Param() params: { id: number },
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })
+    )
+    id: number,
     @Body() body: Prisma.PostUpdateInput
   ): Observable<PostDTO> {
     return this.postService.updatePost({
-      where: { id: params.id },
+      where: { id },
       data: body,
     });
   }
