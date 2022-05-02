@@ -1,17 +1,35 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
+import { UserDTO } from '@swipper/api-interfaces';
 import { from, Observable } from 'rxjs';
 import { HashingService } from './hashing.service';
 import { PrismaService } from './prisma.service';
 
 @Injectable()
 export class UserService {
+  private static logger = new Logger(UserService.name);
+
   constructor(private prisma: PrismaService, private hashing: HashingService) {}
 
-  user(
-    userWhereUniqueInput: Prisma.UserWhereUniqueInput
-  ): Observable<User | null> {
-    return from(this.prisma.user.findUnique({ where: userWhereUniqueInput }));
+  user(userWhereUniqueInput: Prisma.UserWhereUniqueInput): Observable<UserDTO> {
+    return new Observable<UserDTO>((observer) => {
+      this.prisma.user
+        .findUnique({
+          where: userWhereUniqueInput,
+        })
+        .then((user) => {
+          observer.next({ user: user });
+          observer.complete();
+        })
+        .catch(() => {
+          observer.error({
+            error: {
+              code: 404,
+              message: 'The requested resource was not found.',
+            },
+          });
+        });
+    });
   }
 
   users(params: {
@@ -33,8 +51,8 @@ export class UserService {
     );
   }
 
-  createUser(data: Prisma.UserCreateInput): Observable<User> {
-    return new Observable<User>((observer) => {
+  createUser(data: Prisma.UserCreateInput): Observable<UserDTO> {
+    return new Observable<UserDTO>((observer) => {
       this.hashing.hash(data.password_hash as string).subscribe((hash) => {
         data.password_hash = hash;
         this.prisma.user
@@ -42,11 +60,14 @@ export class UserService {
             data,
           })
           .then((user) => {
-            observer.next(user);
+            observer.next({ error: {}, user } as UserDTO);
             observer.complete();
           })
-          .catch((err) => {
-            observer.error(err);
+          .catch(() => {
+            observer.next({
+              error: { code: 422, message: 'User already exists' },
+            } as UserDTO);
+            observer.complete();
           });
       });
     });
@@ -55,9 +76,9 @@ export class UserService {
   updateUser(params: {
     where: Prisma.UserWhereUniqueInput;
     data: Prisma.UserUpdateInput;
-  }): Observable<User> {
+  }): Observable<UserDTO> {
     const { where, data } = params;
-    return new Observable<User>((observer) => {
+    return new Observable<UserDTO>((observer) => {
       if (data.password_hash) {
         this.hashing.hash(data.password_hash as string).subscribe((hash) => {
           data.password_hash = hash;
@@ -67,11 +88,16 @@ export class UserService {
               where,
             })
             .then((user) => {
-              observer.next(user);
+              observer.next({ user: user });
               observer.complete();
             })
-            .catch((err) => {
-              observer.error(err);
+            .catch(() => {
+              observer.error({
+                error: {
+                  code: 404,
+                  message: 'The requested resource was not found.',
+                },
+              });
             });
         });
       } else {
@@ -81,21 +107,39 @@ export class UserService {
             where,
           })
           .then((user) => {
-            observer.next(user);
+            observer.next({ user: user });
             observer.complete();
           })
-          .catch((err) => {
-            observer.error(err);
+          .catch(() => {
+            observer.error({
+              error: {
+                code: 404,
+                message: 'The requested resource was not found.',
+              },
+            });
           });
       }
     });
   }
 
-  deleteUser(where: Prisma.UserWhereUniqueInput): Observable<User> {
-    return from(
-      this.prisma.user.delete({
-        where,
-      })
-    );
+  deleteUser(where: Prisma.UserWhereUniqueInput): Observable<UserDTO> {
+    return new Observable<UserDTO>((observer) => {
+      this.prisma.user
+        .delete({
+          where,
+        })
+        .then((user) => {
+          observer.next({ user: user });
+          observer.complete();
+        })
+        .catch(() => {
+          observer.error({
+            error: {
+              code: 404,
+              message: 'The requested resource was not found.',
+            },
+          });
+        });
+    });
   }
 }

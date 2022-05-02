@@ -8,6 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { Prisma, Post as PostModel } from '@prisma/client';
+import { PostDTO } from '@swipper/api-interfaces';
 import { Observable } from 'rxjs';
 import { PostService } from '../services/post.service';
 
@@ -21,17 +22,17 @@ export class PostController {
   }
 
   @Get(':id')
-  findOne(@Param() params: { id: number }): Observable<PostModel> {
+  findOne(@Param() params: { id: number }): Observable<PostDTO> {
     return this.postService.post({ id: params.id });
   }
 
   @Post()
-  create(@Body() body: Prisma.PostCreateInput): Observable<PostModel> {
+  create(@Body() body: Prisma.PostCreateInput): Observable<PostDTO> {
     return this.postService.createPost(body);
   }
 
   @Delete(':id')
-  delete(@Param() params): Observable<PostModel> {
+  delete(@Param() params): Observable<PostDTO> {
     return this.postService.deletePost({ id: params.id });
   }
 
@@ -39,7 +40,7 @@ export class PostController {
   update(
     @Param() params: { id: number },
     @Body() body: Prisma.PostUpdateInput
-  ): Observable<PostModel> {
+  ): Observable<PostDTO> {
     return this.postService.updatePost({
       where: { id: params.id },
       data: body,
