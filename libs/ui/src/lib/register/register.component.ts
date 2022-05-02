@@ -58,7 +58,6 @@ export class RegisterComponent implements OnInit {
         password_hash: this.formControls['password'].value,
       } as Prisma.UserCreateInput)
       .subscribe((data) => {
-        console.log(data);
         if (data.id) {
           this.router.navigate([this.returnUrl]);
         }
