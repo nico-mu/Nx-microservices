@@ -16,35 +16,48 @@ export class AuthController {
   login(
     @Body() body: { email?: string; name?: string; password_hash: string }
   ): Observable<UserDTO> {
-    return new Observable<UserDTO>((observer) => {
-      this.userService
-        .user({
-          email: body.email,
-          name: body.name,
-        })
-        .subscribe((userDTO) => {
-          if (userDTO) {
-            this.hashingService
-              .compare(body.password_hash, userDTO.user.password_hash)
-              .subscribe((result) => {
-                if (result) {
-                  observer.next(userDTO);
-                  observer.complete();
-                } else {
-                  observer.next({
-                    error: {
-                      code: HttpStatus.UNAUTHORIZED,
-                      message: 'Invalid Password',
-                    },
-                  });
-                  observer.complete();
-                }
-              });
-          } else {
-            observer.error('User not found');
-          }
-        });
-    });
+    if (body.email || body.name) {
+      return new Observable<UserDTO>((observer) => {
+        this.userService
+          .user({
+            email: body.email,
+            name: body.name,
+          })
+          .subscribe((userDTO) => {
+            if (userDTO) {
+              this.hashingService
+                .compare(body.password_hash, userDTO.user.password_hash)
+                .subscribe((result) => {
+                  if (result) {
+                    observer.next(userDTO);
+                    observer.complete();
+                  } else {
+                    observer.next({
+                      error: {
+                        code: HttpStatus.UNAUTHORIZED,
+                        message: 'Invalid Password',
+                      },
+                    });
+                    observer.complete();
+                  }
+                });
+            } else {
+              observer.error('User not found');
+            }
+          });
+      });
+    } else {
+      return new Observable<UserDTO>((observer) => {
+        observer.next({
+          user: {},
+          error: {
+            code: HttpStatus.BAD_REQUEST,
+            message: 'Missing Parameter',
+          },
+        } as UserDTO);
+        observer.complete();
+      });
+    }
   }
 
   @Post('register')
@@ -55,6 +68,7 @@ export class AuthController {
     }
     return of({
       error: { code: HttpStatus.BAD_REQUEST, message: 'Missing Parameter' },
+      user: {},
     } as UserDTO);
   }
 }
