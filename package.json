@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "setup": "yarn install && nx run models:gen-client",
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "start": "nx serve",
     "build": "nx affected:build --base=main",
     "test": "nx test",
-    "dump-postgres": "./scripts/database/dump.sh"
+    "dump-postgres": "./scripts/database/dump.sh",
+    "serve": "docker compose -f docker-compose.yml up -d && nx serve"
   },
   "private": true,
   "dependencies": {
