@@ -3,18 +3,18 @@
   <form [formGroup]="loginForm" (submit)="onSubmit()">
     <div>
       <label for="username">Username</label>
-      <input formControlName="username" id="username" />
+      <input formControlName="username" name="username" />
       <div *ngIf="!this.isValidForm('username') && this.submitted">
         Please provide an username.
       </div>
     </div>
     <div>
       <label for="password">Password</label>
-      <input formControlName="password" type="password" id="password" />
+      <input formControlName="password" type="password" name="password" />
       <div *ngIf="!this.isValidForm('password') && this.submitted">
         Please provide a password.
       </div>
     </div>
-    <button #login>Login</button>
+    <button name="loginButton">Login</button>
   </form>
 </div>
