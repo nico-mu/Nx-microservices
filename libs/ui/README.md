@@ -1,6 +1,6 @@
 # ui
 
-This library was generated with [Nx](https://nx.dev).
+Contains all components used in the frontend projects.
 
 ## Running unit tests
 

@@ -1,6 +1,6 @@
 # api-interfaces
 
-This library was generated with [Nx](https://nx.dev).
+This liberary contains all api interfaces. All api interfaces should be generated here and be imported to apps.
 
 ## Running lint
 
