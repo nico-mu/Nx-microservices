@@ -1,18 +1,18 @@
 {
-  "root": "apps/swipper-e2e",
-  "sourceRoot": "apps/swipper-e2e/src",
+  "root": "apps/e2e",
+  "sourceRoot": "apps/e2e/src",
   "projectType": "application",
   "targets": {
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
-        "cypressConfig": "apps/swipper-e2e/cypress.json",
-        "devServerTarget": "swipper:serve:development",
+        "cypressConfig": "apps/e2e/cypress.json",
+        "devServerTarget": "frontend:serve:development",
         "generatePackageJson": true
       },
       "configurations": {
         "production": {
-          "devServerTarget": "swipper:serve:production"
+          "devServerTarget": "frontend:serve:production"
         }
       }
     },
@@ -20,10 +20,10 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/swipper-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": ["apps/e2e/**/*.{js,ts}"]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": ["swipper"]
+  "implicitDependencies": ["frontend"]
 }

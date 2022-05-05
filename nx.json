@@ -1,5 +1,5 @@
 {
-  "npmScope": "swipper",
+  "npmScope": "nx-microservices",
   "affected": {
     "defaultBase": "master"
   },
@@ -45,5 +45,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "swipper"
+  "defaultProject": "frontend"
 }

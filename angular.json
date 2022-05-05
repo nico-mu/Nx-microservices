@@ -3,9 +3,9 @@
   "projects": {
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
+    "e2e": "apps/e2e",
+    "frontend": "apps/frontend",
     "models": "libs/models",
-    "swipper": "apps/swipper",
-    "swipper-e2e": "apps/swipper-e2e",
     "ui": "libs/ui"
   }
 }

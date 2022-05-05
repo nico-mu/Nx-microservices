@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  swipper_api:
-    image: swipper_api
+  rest_api:
+    image: rest_api
     container_name: API_container
     build:
       context: .
