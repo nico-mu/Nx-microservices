@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent, RegisterComponent } from '@swipper/ui';
+import { LoginComponent, RegisterComponent } from '@nx-microservices/ui';
 
 const routes: Routes = [
   {

@@ -10,7 +10,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { Prisma, User as UserModel } from '@prisma/client';
-import { UserDTO } from '@swipper/api-interfaces';
+import { UserDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
 

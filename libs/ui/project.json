@@ -2,7 +2,7 @@
   "projectType": "library",
   "root": "libs/ui",
   "sourceRoot": "libs/ui/src",
-  "prefix": "swipper",
+  "prefix": "nx-microservices",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",

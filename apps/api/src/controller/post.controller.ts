@@ -10,7 +10,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { Prisma, Post as PostModel } from '@prisma/client';
-import { PostDTO } from '@swipper/api-interfaces';
+import { PostDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
 import { PostService } from '../services/post.service';
 

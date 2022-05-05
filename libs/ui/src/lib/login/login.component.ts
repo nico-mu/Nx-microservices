@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'swipper-login',
+  selector: 'nx-microservices-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })

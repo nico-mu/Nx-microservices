@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Post } from '@prisma/client';
-import { PostDTO } from '@swipper/api-interfaces';
+import { PostDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
 import { PostService } from '../services/post.service';
 import { PrismaService } from '../services/prisma.service';

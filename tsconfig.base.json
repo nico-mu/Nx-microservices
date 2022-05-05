@@ -15,9 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@swipper/api-interfaces": ["libs/api-interfaces/src/index.ts"],
-      "@swipper/models": ["libs/models/src/index.ts"],
-      "@swipper/ui": ["libs/ui/src/index.ts"]
+      "@nx-microservices/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@nx-microservices/models": ["libs/models/src/index.ts"],
+      "@nx-microservices/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

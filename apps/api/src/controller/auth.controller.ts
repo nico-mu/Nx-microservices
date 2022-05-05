@@ -1,6 +1,6 @@
 import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { UserDTO } from '@swipper/api-interfaces';
+import { UserDTO } from '@nx-microservices/api-interfaces';
 import { Observable, of } from 'rxjs';
 import { HashingService } from '../services/hashing.service';
 import { UserService } from '../services/user.service';

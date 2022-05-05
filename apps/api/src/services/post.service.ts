@@ -1,6 +1,6 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { Post, Prisma } from '@prisma/client';
-import { PostDTO } from '@swipper/api-interfaces';
+import { PostDTO } from '@nx-microservices/api-interfaces';
 import { from, Observable } from 'rxjs';
 import { PrismaService } from './prisma.service';
 

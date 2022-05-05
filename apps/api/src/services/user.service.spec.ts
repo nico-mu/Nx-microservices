@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Role, User } from '@prisma/client';
-import { UserDTO } from '@swipper/api-interfaces';
+import { UserDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
 import { HashingService } from './hashing.service';
 import { PrismaService } from './prisma.service';

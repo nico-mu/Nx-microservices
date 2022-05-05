@@ -5,7 +5,7 @@ import { Prisma } from '@prisma/client';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'swipper-register',
+  selector: 'nx-microservices-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })

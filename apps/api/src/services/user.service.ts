@@ -1,6 +1,6 @@
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
-import { UserDTO } from '@swipper/api-interfaces';
+import { UserDTO } from '@nx-microservices/api-interfaces';
 import { from, Observable } from 'rxjs';
 import { HashingService } from './hashing.service';
 import { PrismaService } from './prisma.service';

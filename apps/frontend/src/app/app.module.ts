@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { UiModule } from '@swipper/ui';
+import { UiModule } from '@nx-microservices/ui';
 import { AppRoutingModule } from '../app-routing.module';
 import { AppComponent } from './app.component';
 
