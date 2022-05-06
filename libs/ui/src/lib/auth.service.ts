@@ -13,14 +13,17 @@ export class AuthService extends HttpHandlerService {
   }
 
   public loginWithEmail(email: string, password: string): Observable<User> {
-    return this.post<User>('login', { email, password_hash: password });
+    return this.post<User>('auth/login', { email, password_hash: password });
   }
 
   public loginWithName(name: string, password: string): Observable<User> {
-    return this.post<User>('login', { name, password_hash: password } as User);
+    return this.post<User>('auth/login', {
+      name,
+      password_hash: password,
+    } as User);
   }
 
   public register(user: Prisma.UserCreateInput): Observable<User> {
-    return this.post<User>('register', user);
+    return this.post<User>('auth/register', user);
   }
 }

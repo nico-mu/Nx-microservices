@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { HashingService } from '../util/services/hashing.service';
 import { UserService } from '../user/user.service';
 
-@Controller()
+@Controller('auth')
 export class AuthController {
   constructor(
     private readonly hashingService: HashingService,
