@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 
-import { PostModule } from './post.module';
-import { UserModule } from './user.module';
+import { PostModule } from './user/post.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [UserModule, PostModule],
