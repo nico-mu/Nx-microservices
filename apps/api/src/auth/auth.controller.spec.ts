@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Prisma, Role } from '@prisma/client';
 import { UserDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
-import { AuthController } from '../controller/auth.controller';
+import { AuthController } from './auth.controller';
 import { HashingService } from '../util/services/hashing.service';
 import { PrismaService } from '../database/prisma.service';
 import { UserService } from '../user/user.service';
