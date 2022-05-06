@@ -3,9 +3,9 @@ import { Prisma, Role } from '@prisma/client';
 import { UserDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
 import { AuthController } from '../controller/auth.controller';
-import { HashingService } from '../services/hashing.service';
-import { PrismaService } from '../services/prisma.service';
-import { UserService } from '../services/user.service';
+import { HashingService } from '../util/services/hashing.service';
+import { PrismaService } from '../database/prisma.service';
+import { UserService } from '../user/user.service';
 import { HttpStatus } from '@nestjs/common';
 
 describe('AuthController', () => {

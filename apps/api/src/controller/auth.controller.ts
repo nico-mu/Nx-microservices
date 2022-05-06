@@ -2,8 +2,8 @@ import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { UserDTO } from '@nx-microservices/api-interfaces';
 import { Observable, of } from 'rxjs';
-import { HashingService } from '../services/hashing.service';
-import { UserService } from '../services/user.service';
+import { HashingService } from '../util/services/hashing.service';
+import { UserService } from '../user/user.service';
 
 @Controller()
 export class AuthController {

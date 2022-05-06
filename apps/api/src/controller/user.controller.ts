@@ -12,7 +12,7 @@ import {
 import { Prisma, User as UserModel } from '@prisma/client';
 import { UserDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
-import { UserService } from '../services/user.service';
+import { UserService } from '../user/user.service';
 
 @Controller('users')
 export class UserController {

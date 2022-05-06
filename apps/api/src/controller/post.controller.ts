@@ -12,7 +12,7 @@ import {
 import { Prisma, Post as PostModel } from '@prisma/client';
 import { PostDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
-import { PostService } from '../services/post.service';
+import { PostService } from '../post/post.service';
 
 @Controller('posts')
 export class PostController {

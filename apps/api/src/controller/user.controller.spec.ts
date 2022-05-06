@@ -2,9 +2,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Role, User } from '@prisma/client';
 import { UserDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
-import { HashingService } from '../services/hashing.service';
-import { PrismaService } from '../services/prisma.service';
-import { UserService } from '../services/user.service';
+import { HashingService } from '../util/services/hashing.service';
+import { PrismaService } from '../database/prisma.service';
+import { UserService } from '../user/user.service';
 import { UserController } from './user.controller';
 
 describe('UserController', () => {

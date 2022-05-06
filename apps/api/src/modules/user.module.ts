@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from '../controller/auth.controller';
 import { UserController } from '../controller/user.controller';
-import { HashingService } from '../services/hashing.service';
-import { PrismaService } from '../services/prisma.service';
-import { UserService } from '../services/user.service';
+import { HashingService } from '../util/services/hashing.service';
+import { PrismaService } from '../database/prisma.service';
+import { UserService } from '../user/user.service';
 
 @Module({
   imports: [],
