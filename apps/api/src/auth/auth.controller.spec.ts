@@ -16,9 +16,9 @@ describe('AuthController', () => {
   const user = {
     id: 1,
     email: 'first@mail.com',
-    password_hash: password,
+    password: password,
     createdAt: new Date(),
-    name: 'first',
+    username: 'first',
     role: Role.USER,
   };
 
@@ -34,7 +34,7 @@ describe('AuthController', () => {
   describe('login', () => {
     it('should login a User with the username', async () => {
       hashingService.hash(password).subscribe((hash) => {
-        user.password_hash = hash;
+        user.password = hash;
         const result: Observable<UserDTO> = new Observable((observer) => {
           observer.next({
             user: user,
@@ -43,7 +43,7 @@ describe('AuthController', () => {
         });
         jest.spyOn(userService, 'user').mockImplementation(() => result);
         authController
-          .login({ name: 'first', password_hash: password })
+          .login({ name: 'first', password: password })
           .subscribe((userRes) =>
             expect(userRes).toStrictEqual({ error: {}, user: user })
           );
@@ -52,7 +52,7 @@ describe('AuthController', () => {
 
     it('should login a User with the email', async () => {
       hashingService.hash(password).subscribe((hash) => {
-        user.password_hash = hash;
+        user.password = hash;
         const result: Observable<UserDTO> = new Observable((observer) => {
           observer.next({
             user: user,
@@ -61,7 +61,7 @@ describe('AuthController', () => {
         });
         jest.spyOn(userService, 'user').mockImplementation(() => result);
         authController
-          .login({ email: 'first@mail.com', password_hash: password })
+          .login({ email: 'first@mail.com', password: password })
           .subscribe((userRes) =>
             expect(userRes).toStrictEqual({ error: {}, user: user })
           );
@@ -69,7 +69,7 @@ describe('AuthController', () => {
     });
 
     it('should return error on missing user input', async () => {
-      authController.login({ password_hash: password }).subscribe((userRes) =>
+      authController.login({ password: password }).subscribe((userRes) =>
         expect(userRes).toStrictEqual({
           error: {
             code: HttpStatus.BAD_REQUEST,
@@ -84,7 +84,7 @@ describe('AuthController', () => {
   describe('register', () => {
     it('should register a User', () => {
       hashingService.hash(password).subscribe((hash) => {
-        user.password_hash = hash;
+        user.password = hash;
         const result: Observable<UserDTO> = new Observable((observer) => {
           observer.next({
             user: user,
@@ -94,8 +94,8 @@ describe('AuthController', () => {
         jest.spyOn(userService, 'createUser').mockImplementation(() => result);
         authController
           .register({
-            name: user.name,
-            password_hash: password,
+            username: user.username,
+            password: password,
             email: user.email,
           })
           .subscribe((userRes) =>

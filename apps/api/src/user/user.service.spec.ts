@@ -14,9 +14,9 @@ describe('UserService', () => {
   const user: User = {
     id: 1,
     email: 'first@mail.com',
-    password_hash: 'hashedPassword',
+    password: 'hashedPassword',
     createdAt: new Date(),
-    name: 'first',
+    username: 'first',
     role: Role.USER,
   };
 
@@ -88,8 +88,8 @@ describe('UserService', () => {
       await userService
         .createUser({
           email: 'first@mail.com',
-          name: 'first',
-          password_hash: 'password',
+          username: 'first',
+          password: 'password',
         })
         .subscribe((userRes) => {
           expect(userRes).toStrictEqual(result);
@@ -103,11 +103,12 @@ describe('UserService', () => {
         .spyOn(hashingService, 'hash')
         .mockImplementation(() => hashingResult);
       const updatedUser = user;
-      updatedUser.name = 'updated';
+      updatedUser.username = 'updated';
       const mockUpdate = function () {
         return Promise.resolve(updatedUser);
       };
       prismaService.user.update = jest.fn().mockImplementation(mockUpdate);
+      user;
 
       await userService
         .updateUser({ where: { id: 1 }, data: user })
@@ -124,14 +125,14 @@ describe('UserService', () => {
         .spyOn(hashingService, 'hash')
         .mockImplementation(() => hashingResult);
       const updatedUser = user;
-      updatedUser.password_hash = 'updated';
+      updatedUser.password = 'updated';
       const mockUpdate = function () {
         return Promise.resolve(updatedUser);
       };
       prismaService.user.update = jest.fn().mockImplementation(mockUpdate);
 
       await userService
-        .updateUser({ where: { id: 1 }, data: { password_hash: 'password' } })
+        .updateUser({ where: { id: 1 }, data: { password: 'password' } })
         .subscribe((userRes) => {
           expect(userRes).toStrictEqual({
             error: {},

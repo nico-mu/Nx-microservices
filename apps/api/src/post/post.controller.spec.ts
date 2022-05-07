@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Post } from '@prisma/client';
 import { PostDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
-import { PostService } from '../post/post.service';
+import { PostService } from './post.service';
 import { PrismaService } from '../database/prisma.service';
 import { PostController } from './post.controller';
 

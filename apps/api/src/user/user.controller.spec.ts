@@ -4,7 +4,7 @@ import { UserDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
 import { HashingService } from '../util/services/hashing.service';
 import { PrismaService } from '../database/prisma.service';
-import { UserService } from '../user/user.service';
+import { UserService } from './user.service';
 import { UserController } from './user.controller';
 
 describe('UserController', () => {
@@ -13,9 +13,9 @@ describe('UserController', () => {
   const user = {
     id: 1,
     email: 'first@mail.com',
-    password_hash: 'password',
+    password: 'password',
     createdAt: new Date(),
-    name: 'first',
+    username: 'first',
     role: Role.USER,
   };
 
@@ -35,9 +35,9 @@ describe('UserController', () => {
           {
             id: 2,
             email: 'second@mail.com',
-            password_hash: 'second',
+            password: 'second',
             createdAt: new Date(),
-            name: 'second',
+            username: 'second',
             role: Role.USER,
           },
         ]);
@@ -73,9 +73,9 @@ describe('UserController', () => {
 
       expect(
         await userController.create({
-          name: 'first',
+          username: 'first',
           email: 'first@mail.com',
-          password_hash: 'password',
+          password: 'password',
         })
       ).toBe(result);
     });
@@ -85,14 +85,14 @@ describe('UserController', () => {
     it('should return a User', async () => {
       const result: Observable<UserDTO> = new Observable((observer) => {
         const updatedUser = user;
-        updatedUser.name = 'updated';
+        updatedUser.username = 'updated';
         observer.next({
           user: updatedUser,
         } as UserDTO);
       });
       jest.spyOn(userService, 'updateUser').mockImplementation(() => result);
 
-      expect(userController.update(1, { name: 'updated' })).toBe(result);
+      expect(userController.update(1, { username: 'updated' })).toBe(result);
     });
   });
 

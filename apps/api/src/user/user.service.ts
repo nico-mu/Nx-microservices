@@ -55,8 +55,8 @@ export class UserService {
 
   createUser(data: Prisma.UserCreateInput): Observable<UserDTO> {
     return new Observable<UserDTO>((observer) => {
-      this.hashing.hash(data.password_hash as string).subscribe((hash) => {
-        data.password_hash = hash;
+      this.hashing.hash(data.password as string).subscribe((hash) => {
+        data.password = hash;
         this.prisma.user
           .create({
             data,
@@ -84,9 +84,9 @@ export class UserService {
   }): Observable<UserDTO> {
     const { where, data } = params;
     return new Observable<UserDTO>((observer) => {
-      if (data.password_hash) {
-        this.hashing.hash(data.password_hash as string).subscribe((hash) => {
-          data.password_hash = hash;
+      if (data.password) {
+        this.hashing.hash(data.password as string).subscribe((hash) => {
+          data.password = hash;
           this.prisma.user
             .update({
               data,
