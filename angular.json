@@ -1,11 +1,14 @@
 {
   "version": 2,
   "projects": {
-    "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
     "e2e": "apps/e2e",
     "frontend": "apps/frontend",
+    "gateway": "apps/gateway",
+    "microservice-handler": "libs/microservice-handler",
     "models": "libs/models",
-    "ui": "libs/ui"
+    "post-service": "apps/post-service",
+    "ui": "libs/ui",
+    "user-service": "apps/user-service"
   }
 }

@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@nx-microservices/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@nx-microservices/microservice-handler": [
+        "libs/microservice-handler/src/index.ts"
+      ],
       "@nx-microservices/models": ["libs/models/src/index.ts"],
       "@nx-microservices/ui": ["libs/ui/src/index.ts"]
     }

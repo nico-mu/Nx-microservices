@@ -1,0 +1,23 @@
+{
+  "root": "libs/microservice-handler",
+  "sourceRoot": "libs/microservice-handler/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/microservice-handler/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/microservice-handler"],
+      "options": {
+        "jestConfig": "libs/microservice-handler/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

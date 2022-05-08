@@ -1,6 +1,10 @@
 # nx-microservices
 
 ## Setup
+Replicate the following in your project:
+
+- .env.example => .env
+- /docker/.env.example => /docker/.env
 
 ### Run the following commands in the server folder
 

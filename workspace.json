@@ -1,19 +1,19 @@
 {
   "version": 1,
   "projects": {
-    "api": {
-      "root": "apps/api",
-      "sourceRoot": "apps/api/src",
+    "gateway": {
+      "root": "apps/gateway",
+      "sourceRoot": "apps/gateway/src",
       "projectType": "application",
-      "prefix": "api",
+      "prefix": "gateway",
       "schematics": {},
       "targets": {
         "deploy": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
             "commands": [
-              "nx build api",
-              "docker build -f ./apps/api/Dockerfile . -t api"
+              "nx build gateway",
+              "docker build -f ./apps/gateway/Dockerfile . -t api"
             ],
             "parallel": false
           }
@@ -22,10 +22,10 @@
           "builder": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/api",
-            "main": "apps/api/src/main.ts",
-            "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"],
+            "outputPath": "dist/apps/gateway",
+            "main": "apps/gateway/src/main.ts",
+            "tsConfig": "apps/gateway/tsconfig.app.json",
+            "assets": ["apps/gateway/src/assets"],
             "generatePackageJson": true
           },
           "configurations": {
@@ -35,48 +35,28 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/api/src/environments/environment.ts",
-                  "with": "apps/api/src/environments/environment.prod.ts"
+                  "replace": "apps/gateway/src/environments/environment.ts",
+                  "with": "apps/gateway/src/environments/environment.prod.ts"
                 }
               ]
             }
           }
-        },
-        "serve": {
-          "builder": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "api:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/api"],
-          "options": {
-            "jestConfig": "apps/api/jest.config.js",
-            "passWithNoTests": true
-          }
         }
       }
     },
-    "nx-microservices": {
-      "root": "apps/nx-microservices",
-      "sourceRoot": "apps/nx-microservices/src",
+    "user-service": {
+      "root": "apps/user-service",
+      "sourceRoot": "apps/user-service/src",
       "projectType": "application",
-      "prefix": "nx-microservices",
+      "prefix": "user-service",
       "schematics": {},
       "targets": {
         "deploy": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
             "commands": [
-              "nx build nx-microservices",
-              "docker build -f ./apps/nx-microservices/Dockerfile . -t nx-microservices"
+              "nx build user-service",
+              "docker build -f ./apps/user-service/Dockerfile . -t api"
             ],
             "parallel": false
           }
@@ -85,10 +65,10 @@
           "builder": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/nx-microservices",
-            "main": "apps/nx-microservices/src/main.ts",
-            "tsConfig": "apps/nx-microservices/tsconfig.app.json",
-            "assets": ["apps/nx-microservices/src/assets"],
+            "outputPath": "dist/apps/user-service",
+            "main": "apps/user-service/src/main.ts",
+            "tsConfig": "apps/user-service/tsconfig.app.json",
+            "assets": ["apps/user-service/src/assets"],
             "generatePackageJson": true
           },
           "configurations": {
@@ -98,8 +78,94 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/nx-microservices/src/environments/environment.ts",
-                  "with": "apps/nx-microservices/src/environments/environment.prod.ts"
+                  "replace": "apps/user-service/src/environments/environment.ts",
+                  "with": "apps/user-service/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "post-service": {
+      "root": "apps/post-service",
+      "sourceRoot": "apps/post-service/src",
+      "projectType": "application",
+      "prefix": "post-service",
+      "schematics": {},
+      "targets": {
+        "deploy": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "nx build post-service",
+              "docker build -f ./apps/post-service/Dockerfile . -t api"
+            ],
+            "parallel": false
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/post-service",
+            "main": "apps/post-service/src/main.ts",
+            "tsConfig": "apps/post-service/tsconfig.app.json",
+            "assets": ["apps/post-service/src/assets"],
+            "generatePackageJson": true
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/post-service/src/environments/environment.ts",
+                  "with": "apps/post-service/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "frontend": {
+      "root": "apps/frontend",
+      "sourceRoot": "apps/frontend/src",
+      "projectType": "application",
+      "prefix": "frontend",
+      "schematics": {},
+      "targets": {
+        "deploy": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "nx build frontend",
+              "docker build -f ./apps/frontend/Dockerfile . -t frontend"
+            ],
+            "parallel": false
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/frontend",
+            "main": "apps/frontend/src/main.ts",
+            "tsConfig": "apps/frontend/tsconfig.app.json",
+            "assets": ["apps/frontend/src/assets"],
+            "generatePackageJson": true
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/frontend/src/environments/environment.ts",
+                  "with": "apps/frontend/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -108,25 +174,26 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "nx-microservices:build"
+            "buildTarget": "frontend:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/nx-microservices/**/*.ts"]
+            "lintFilePatterns": ["apps/frontend/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/nx-microservices"],
+          "outputs": ["coverage/apps/frontend"],
           "options": {
-            "jestConfig": "apps/nx-microservices/jest.config.js",
+            "jestConfig": "apps/frontend/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
+
     "todos": {
       "root": "libs/todos",
       "sourceRoot": "libs/todos/src",
@@ -145,5 +212,5 @@
   "cli": {
     "defaultCollection": "@nrwl/nest"
   },
-  "defaultProject": "api"
+  "defaultProject": "gateway"
 }

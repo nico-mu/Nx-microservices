@@ -18,8 +18,8 @@ export class AuthService extends HttpHandlerService {
 
   public loginWithName(name: string, password: string): Observable<User> {
     return this.post<User>('auth/login', {
-      name,
-      password_hash: password,
+      username: name,
+      password: password,
     } as User);
   }
 
