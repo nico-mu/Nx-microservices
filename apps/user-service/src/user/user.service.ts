@@ -22,14 +22,15 @@ export class UserService {
         .then((user) => {
           if (user) {
             observer.next({ user: user, error: {} } as IUserDTO);
+          } else {
+            observer.next({
+              user: {},
+              error: {
+                code: HttpStatus.NOT_FOUND,
+                message: 'The requested resource was not found.',
+              },
+            } as IUserDTO);
           }
-          observer.next({
-            user: {},
-            error: {
-              code: HttpStatus.NOT_FOUND,
-              message: 'The requested resource was not found.',
-            },
-          } as IUserDTO);
           observer.complete();
         })
         .catch(() => {
@@ -75,14 +76,15 @@ export class UserService {
           .then((user) => {
             if (user) {
               observer.next({ user: user, error: {} } as IUserDTO);
+            } else {
+              observer.next({
+                user: {},
+                error: {
+                  code: HttpStatus.NOT_FOUND,
+                  message: 'The requested resource was not found.',
+                },
+              } as IUserDTO);
             }
-            observer.next({
-              user: {},
-              error: {
-                code: HttpStatus.NOT_FOUND,
-                message: 'The requested resource was not found.',
-              },
-            } as IUserDTO);
             observer.complete();
           })
           .catch(() => {
@@ -116,14 +118,15 @@ export class UserService {
             .then((user) => {
               if (user) {
                 observer.next({ user: user, error: {} } as IUserDTO);
+              } else {
+                observer.next({
+                  user: {},
+                  error: {
+                    code: HttpStatus.NOT_FOUND,
+                    message: 'The requested resource was not found.',
+                  },
+                } as IUserDTO);
               }
-              observer.next({
-                user: {},
-                error: {
-                  code: HttpStatus.NOT_FOUND,
-                  message: 'The requested resource was not found.',
-                },
-              } as IUserDTO);
               observer.complete();
             })
             .catch(() => {
@@ -146,14 +149,15 @@ export class UserService {
           .then((user) => {
             if (user) {
               observer.next({ user: user, error: {} } as IUserDTO);
+            } else {
+              observer.next({
+                user: {},
+                error: {
+                  code: HttpStatus.NOT_FOUND,
+                  message: 'The requested resource was not found.',
+                },
+              } as IUserDTO);
             }
-            observer.next({
-              user: {},
-              error: {
-                code: HttpStatus.NOT_FOUND,
-                message: 'The requested resource was not found.',
-              },
-            } as IUserDTO);
             observer.complete();
           })
           .catch(() => {
@@ -179,14 +183,15 @@ export class UserService {
         .then((user) => {
           if (user) {
             observer.next({ user: user, error: {} } as IUserDTO);
+          } else {
+            observer.next({
+              user: {},
+              error: {
+                code: HttpStatus.NOT_FOUND,
+                message: 'The requested resource was not found.',
+              },
+            } as IUserDTO);
           }
-          observer.next({
-            user: {},
-            error: {
-              code: HttpStatus.NOT_FOUND,
-              message: 'The requested resource was not found.',
-            },
-          } as IUserDTO);
           observer.complete();
         })
         .catch(() => {
