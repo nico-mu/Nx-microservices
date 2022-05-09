@@ -54,11 +54,10 @@ export class RegisterComponent implements OnInit {
     this.authService
       .register({
         email: this.formControls['email'].value,
-        name: this.formControls['username'].value,
-        password_hash: this.formControls['password'].value,
+        username: this.formControls['username'].value,
+        password: this.formControls['password'].value,
       } as Prisma.UserCreateInput)
       .subscribe((data) => {
-        console.log(data);
         if (data.id) {
           this.router.navigate([this.returnUrl]);
         }

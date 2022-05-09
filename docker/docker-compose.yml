@@ -1,0 +1,124 @@
+version: '3.8'
+services:
+  gateway:
+    container_name: Gateway
+    hostname: gateway
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    build:
+      context: ../
+      dockerfile: ./apps/gateway/Dockerfile
+    ports:
+      - '3333:3333'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+    networks:
+      - backend
+      - frontend
+
+  user:
+    container_name: User
+    hostname: user
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    build:
+      context: ../
+      dockerfile: ./apps/user-service/Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+    networks:
+      - backend
+    links:
+      - postgres
+    depends_on:
+      - postgres
+  post:
+    container_name: Post
+    hostname: post
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    build:
+      context: ../
+      dockerfile: ./apps/post-service/Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+    networks:
+      - backend
+    links:
+      - postgres
+    depends_on:
+      - postgres
+
+  auth:
+    container_name: Auth
+    hostname: auth
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    build:
+      context: ../
+      dockerfile: ./apps/auth-service/Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+    networks:
+      - backend
+    links:
+      - postgres
+    depends_on:
+      - postgres
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - '5432:5432'
+    networks:
+      - backend
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - '${PGADMIN_PORT:-5050}:80'
+    networks:
+      - backend
+    restart: unless-stopped
+    depends_on:
+      - postgres
+
+networks:
+  backend:
+    driver: bridge
+  frontend:
+    name: infrastructure
+
+volumes:
+  postgres:
+  pgadmin:

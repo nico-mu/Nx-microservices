@@ -2,17 +2,22 @@
 
 ## Setup
 
+Replicate the following in your project:
+
+- .env.example => .env
+- /docker/.env.example => /docker/.env
+
 ### Run the following commands in the server folder
 
-| Command | Usage |
-| ------ | ----- |
-| `yarn setup` | Setup the project and generate the prisma client. |
+| Command      | Usage                                               |
+| ------------ | --------------------------------------------------- |
+| `yarn setup` | Setup the project and generate the prisma client.   |
 | `yarn serve` | Serve the application. Make sure Docker is running. |
 
 ## More commands
 
-| Command | Usage |
-| ------ | ----- |
+| Command         | Usage                                             |
+| --------------- | ------------------------------------------------- |
 | `dump-postgres` | Generate a database dump of the postgres database |
 
 ## Generate an application

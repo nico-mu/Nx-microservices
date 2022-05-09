@@ -13,8 +13,8 @@ async function main() {
     update: {},
     create: {
       email: 'alice@mail.com',
-      name: 'alice',
-      password_hash: alicePw,
+      username: 'alice',
+      password: alicePw,
       posts: {
         create: {
           title: 'Hello World!',
@@ -29,8 +29,8 @@ async function main() {
     update: {},
     create: {
       email: 'bob@mail.com',
-      name: 'bob',
-      password_hash: bobPw,
+      username: 'bob',
+      password: bobPw,
       posts: {
         create: [
           {
@@ -52,8 +52,8 @@ async function main() {
     update: {},
     create: {
       email: 'nico@mail.com',
-      name: 'nico',
-      password_hash: nicoPw,
+      username: 'nico',
+      password: nicoPw,
       role: Role.ADMIN,
     },
   });
@@ -66,8 +66,8 @@ async function main() {
     update: {},
     create: {
       email: 'admin@admin.com',
-      name: 'admin',
-      password_hash: adminPw,
+      username: 'admin',
+      password: adminPw,
       role: Role.ADMIN,
     },
   });
