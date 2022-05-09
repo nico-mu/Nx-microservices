@@ -32,7 +32,7 @@
     "@prisma/client": "^3.13.0",
     "bcrypt": "^5.0.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "~7.4.0",
+    "rxjs": "~7.5.5",
     "swagger-ui-express": "^4.3.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
