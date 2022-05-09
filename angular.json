@@ -2,10 +2,12 @@
   "version": 2,
   "projects": {
     "api-interfaces": "libs/api-interfaces",
+    "auth-service": "apps/auth-service",
     "e2e": "apps/e2e",
     "frontend": "apps/frontend",
     "gateway": "apps/gateway",
     "microservice-handler": "libs/microservice-handler",
+    "microservice-services": "libs/microservice-services",
     "models": "libs/models",
     "post-service": "apps/post-service",
     "ui": "libs/ui",

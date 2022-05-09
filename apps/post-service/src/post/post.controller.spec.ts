@@ -3,8 +3,8 @@ import { Post } from '@prisma/client';
 import { IPostDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
 import { PostService } from './post.service';
-import { PrismaService } from '../database/prisma.service';
 import { PostController } from './post.controller';
+import { PrismaService } from '@nx-microservices/microservice-services';
 
 describe('PostController', () => {
   let postController: PostController;
@@ -65,7 +65,7 @@ describe('PostController', () => {
       });
       jest.spyOn(postService, 'post').mockImplementation(() => result);
 
-      expect(await postController.findOne(1)).toBe(result);
+      expect(await postController.findOne({ id: 1 })).toBe(result);
     });
   });
 

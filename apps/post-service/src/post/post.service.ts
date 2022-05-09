@@ -2,7 +2,7 @@ import { HttpStatus, Injectable } from '@nestjs/common';
 import { Post, Prisma } from '@prisma/client';
 import { IPostDTO } from '@nx-microservices/api-interfaces';
 import { from, Observable } from 'rxjs';
-import { PrismaService } from '../database/prisma.service';
+import { PrismaService } from '@nx-microservices/microservice-services';
 
 @Injectable()
 export class PostService {

@@ -4,8 +4,8 @@ import { IUserDTO } from '@nx-microservices/api-interfaces';
 import {
   CREATE_USER,
   DELETE_USER,
-  GET_USER,
-  GET_USER_BY_ID,
+  GET_USERS,
+  GET_USER_UNIQUE,
   UPDATE_USER,
 } from '@nx-microservices/microservice-handler';
 import { Prisma, User as UserModel } from '@prisma/client';
@@ -16,14 +16,14 @@ import { UserService } from '../user/user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @MessagePattern(GET_USER)
+  @MessagePattern(GET_USERS)
   findAll(): Observable<UserModel[]> {
     return this.userService.users({ orderBy: { id: 'desc' } });
   }
 
-  @MessagePattern(GET_USER_BY_ID)
-  findOne(id: number): Observable<IUserDTO> {
-    return this.userService.user({ id });
+  @MessagePattern(GET_USER_UNIQUE)
+  findOne(params: Prisma.UserWhereUniqueInput): Observable<IUserDTO> {
+    return this.userService.user(params);
   }
 
   @MessagePattern(CREATE_USER)

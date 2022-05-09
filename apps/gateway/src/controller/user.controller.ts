@@ -16,8 +16,8 @@ import { IUserDTO } from '@nx-microservices/api-interfaces';
 import {
   CREATE_USER,
   DELETE_USER,
-  GET_USER,
-  GET_USER_BY_ID,
+  GET_USERS,
+  GET_USER_UNIQUE,
   UPDATE_USER,
 } from '@nx-microservices/microservice-handler';
 import { Prisma } from '@prisma/client';
@@ -32,7 +32,7 @@ export class UserController {
 
   @Get()
   public getUsers(): Observable<IUserDTO> {
-    return this.userService.send(GET_USER, '');
+    return this.userService.send(GET_USERS, '');
   }
 
   @Get(':id')
@@ -43,7 +43,9 @@ export class UserController {
     )
     id: number
   ): Observable<IUserDTO> {
-    return this.userService.send(GET_USER_BY_ID, id);
+    return this.userService.send(GET_USER_UNIQUE, {
+      id: id,
+    } as Prisma.UserWhereUniqueInput);
   }
 
   @Post()

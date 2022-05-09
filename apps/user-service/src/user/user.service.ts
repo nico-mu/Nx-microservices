@@ -1,9 +1,11 @@
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { IUserDTO } from '@nx-microservices/api-interfaces';
+import {
+  HashingService,
+  PrismaService,
+} from '@nx-microservices/microservice-services';
 import { Prisma, User } from '@prisma/client';
 import { from, Observable } from 'rxjs';
-import { PrismaService } from '../database/prisma.service';
-import { HashingService } from '../util/services/hashing.service';
 
 @Injectable()
 export class UserService {
@@ -16,7 +18,7 @@ export class UserService {
   ): Observable<IUserDTO> {
     return new Observable<IUserDTO>((observer) => {
       this.prisma.user
-        .findUnique({
+        .findFirst({
           where: userWhereUniqueInput,
         })
         .then((user) => {

@@ -19,6 +19,9 @@
       "@nx-microservices/microservice-handler": [
         "libs/microservice-handler/src/index.ts"
       ],
+      "@nx-microservices/microservice-services": [
+        "libs/microservice-services/src/index.ts"
+      ],
       "@nx-microservices/models": ["libs/models/src/index.ts"],
       "@nx-microservices/ui": ["libs/ui/src/index.ts"]
     }

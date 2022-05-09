@@ -17,7 +17,7 @@ import {
   CREATE_POST,
   DELETE_POST,
   GET_POST,
-  GET_POST_BY_ID,
+  GET_POST_UNIQUE,
   UPDATE_POST,
 } from '@nx-microservices/microservice-handler';
 import { Prisma } from '@prisma/client';
@@ -43,7 +43,7 @@ export class PostController {
     )
     id: number
   ): Observable<IPostDTO> {
-    return this.postService.send(GET_POST_BY_ID, id);
+    return this.postService.send(GET_POST_UNIQUE, { id });
   }
 
   @Post()

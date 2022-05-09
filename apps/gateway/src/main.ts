@@ -15,6 +15,7 @@ async function bootstrap() {
     .setTitle('NestJS Microservice')
     .addTag('users')
     .addTag('posts')
+    .addTag('auth')
     .setVersion('0.1')
     .build();
 
@@ -25,7 +26,7 @@ async function bootstrap() {
 
   await app.listen(port);
   Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+    `🚀 Gateway is running on: http://localhost:${port}/${globalPrefix}`
   );
 }
 

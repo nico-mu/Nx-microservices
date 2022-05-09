@@ -1,16 +1,17 @@
+import { HttpStatus } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Prisma, Role } from '@prisma/client';
 import { IUserDTO } from '@nx-microservices/api-interfaces';
+import {
+  HashingService,
+  PrismaService,
+} from '@nx-microservices/microservice-services';
+import { Prisma, Role } from '@prisma/client';
 import { Observable } from 'rxjs';
 import { AuthController } from './auth.controller';
-import { HashingService } from '../util/services/hashing.service';
-import { PrismaService } from '../database/prisma.service';
-import { UserService } from '../user/user.service';
-import { HttpStatus } from '@nestjs/common';
 
 describe('AuthController', () => {
   let authController: AuthController;
-  let userService: UserService;
   let hashingService: HashingService;
   const password = 'password';
   const user = {
@@ -24,11 +25,10 @@ describe('AuthController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [UserService, PrismaService, HashingService],
+      providers: [PrismaService, HashingService],
     }).compile();
-    userService = module.get<UserService>(UserService);
     hashingService = module.get<HashingService>(HashingService);
-    authController = new AuthController(hashingService, userService);
+    authController = new AuthController(hashingService, ClientProxy.prototype);
   });
 
   describe('login', () => {
@@ -41,9 +41,11 @@ describe('AuthController', () => {
             error: {},
           } as IUserDTO);
         });
-        jest.spyOn(userService, 'user').mockImplementation(() => result);
+        jest
+          .spyOn(ClientProxy.prototype, 'send')
+          .mockImplementation(() => result);
         authController
-          .login({ name: 'first', password: password })
+          .login({ username: 'first', password: password })
           .subscribe((userRes) =>
             expect(userRes).toStrictEqual({ error: {}, user: user })
           );
@@ -59,7 +61,9 @@ describe('AuthController', () => {
             error: {},
           } as IUserDTO);
         });
-        jest.spyOn(userService, 'user').mockImplementation(() => result);
+        jest
+          .spyOn(ClientProxy.prototype, 'send')
+          .mockImplementation(() => result);
         authController
           .login({ email: 'first@mail.com', password: password })
           .subscribe((userRes) =>
@@ -91,7 +95,9 @@ describe('AuthController', () => {
             error: {},
           } as IUserDTO);
         });
-        jest.spyOn(userService, 'createUser').mockImplementation(() => result);
+        jest
+          .spyOn(ClientProxy.prototype, 'send')
+          .mockImplementation(() => result);
         authController
           .register({
             username: user.username,

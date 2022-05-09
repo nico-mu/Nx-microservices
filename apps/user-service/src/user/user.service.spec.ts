@@ -2,9 +2,11 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Role, User } from '@prisma/client';
 import { IUserDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
-import { HashingService } from '../util/services/hashing.service';
-import { PrismaService } from '../database/prisma.service';
 import { UserService } from './user.service';
+import {
+  HashingService,
+  PrismaService,
+} from '@nx-microservices/microservice-services';
 
 describe('UserService', () => {
   let userService: UserService;

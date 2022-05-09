@@ -2,10 +2,12 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Role, User } from '@prisma/client';
 import { IUserDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
-import { HashingService } from '../util/services/hashing.service';
-import { PrismaService } from '../database/prisma.service';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
+import {
+  HashingService,
+  PrismaService,
+} from '@nx-microservices/microservice-services';
 
 describe('UserController', () => {
   let userController: UserController;
@@ -58,7 +60,7 @@ describe('UserController', () => {
       });
       jest.spyOn(userService, 'user').mockImplementation(() => result);
 
-      expect(await userController.findOne(1)).toBe(result);
+      expect(await userController.findOne({ id: 1 })).toBe(result);
     });
   });
 

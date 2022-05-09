@@ -1,35 +1,43 @@
-import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Controller, HttpStatus, Inject } from '@nestjs/common';
+import { ClientProxy, MessagePattern } from '@nestjs/microservices';
 import { IUserDTO } from '@nx-microservices/api-interfaces';
+import {
+  CREATE_USER,
+  GET_USER_UNIQUE,
+  LOGIN,
+  REGISTER,
+} from '@nx-microservices/microservice-handler';
+import { HashingService } from '@nx-microservices/microservice-services';
+import { Prisma } from '@prisma/client';
 import { Observable, of } from 'rxjs';
-import { HashingService } from '../util/services/hashing.service';
-import { UserService } from '../user/user.service';
 
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly hashingService: HashingService,
-    private readonly userService: UserService
+    @Inject('USER_SERVICE') private readonly userService: ClientProxy
   ) {}
 
-  @Post('login')
-  login(
-    @Body() body: { email?: string; name?: string; password: string }
-  ): Observable<IUserDTO> {
-    if (body.email || body.name) {
+  @MessagePattern(LOGIN)
+  login(body: {
+    email?: string;
+    username?: string;
+    password: string;
+  }): Observable<IUserDTO> {
+    if (body.email || body.username) {
       return new Observable<IUserDTO>((observer) => {
         this.userService
-          .user({
+          .send(GET_USER_UNIQUE, {
+            username: body.username,
             email: body.email,
-            username: body.name,
-          })
-          .subscribe((IUserDTO) => {
-            if (IUserDTO) {
+          } as Prisma.UserWhereUniqueInput)
+          .subscribe((userDto) => {
+            if (userDto && userDto.user.id) {
               this.hashingService
-                .compare(body.password, IUserDTO.user.password)
+                .compare(body.password, userDto.user.password)
                 .subscribe((result) => {
                   if (result) {
-                    observer.next(IUserDTO);
+                    observer.next(userDto);
                     observer.complete();
                   } else {
                     observer.next({
@@ -42,7 +50,8 @@ export class AuthController {
                   }
                 });
             } else {
-              observer.error('User not found');
+              observer.next(userDto);
+              observer.complete();
             }
           });
       });
@@ -60,11 +69,11 @@ export class AuthController {
     }
   }
 
-  @Post('register')
-  register(@Body() body: Prisma.UserCreateInput): Observable<IUserDTO> {
+  @MessagePattern(REGISTER)
+  register(body: Prisma.UserCreateInput): Observable<IUserDTO> {
     // TODO: Throw Error on bad input
     if (body.email && body.username && body.password) {
-      return this.userService.createUser(body);
+      return this.userService.send(CREATE_USER, body);
     }
     return of({
       error: { code: HttpStatus.BAD_REQUEST, message: 'Missing Parameter' },

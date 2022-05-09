@@ -5,7 +5,7 @@ import {
   CREATE_POST,
   DELETE_POST,
   GET_POST,
-  GET_POST_BY_ID,
+  GET_POST_UNIQUE,
   UPDATE_POST,
 } from '@nx-microservices/microservice-handler';
 import { Prisma, Post as PostModel } from '@prisma/client';
@@ -21,9 +21,9 @@ export class PostController {
     return this.postService.posts({ orderBy: { id: 'desc' } });
   }
 
-  @MessagePattern(GET_POST_BY_ID)
-  findOne(id: number): Observable<IPostDTO> {
-    return this.postService.post({ id });
+  @MessagePattern(GET_POST_UNIQUE)
+  findOne(params: Prisma.PostWhereUniqueInput): Observable<IPostDTO> {
+    return this.postService.post(params);
   }
 
   @MessagePattern(CREATE_POST)
