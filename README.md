@@ -1,6 +1,7 @@
 # nx-microservices
 
 ## Setup
+
 Replicate the following in your project:
 
 - .env.example => .env
