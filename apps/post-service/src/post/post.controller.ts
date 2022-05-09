@@ -1,13 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { IPostDTO } from '@nx-microservices/api-interfaces';
-import {
-  CREATE_POST,
-  DELETE_POST,
-  GET_POST,
-  GET_POST_UNIQUE,
-  UPDATE_POST,
-} from '@nx-microservices/microservice-handler';
+import { PostServiceHandler } from '@nx-microservices/microservice-handler';
 import { Prisma, Post as PostModel } from '@prisma/client';
 import { Observable } from 'rxjs';
 import { PostService } from '../post/post.service';
@@ -16,27 +10,27 @@ import { PostService } from '../post/post.service';
 export class PostController {
   constructor(private postService: PostService) {}
 
-  @MessagePattern(GET_POST)
+  @MessagePattern(PostServiceHandler.GET_POSTS)
   findAll(): Observable<PostModel[]> {
     return this.postService.posts({ orderBy: { id: 'desc' } });
   }
 
-  @MessagePattern(GET_POST_UNIQUE)
+  @MessagePattern(PostServiceHandler.GET_POST_UNIQUE)
   findOne(params: Prisma.PostWhereUniqueInput): Observable<IPostDTO> {
     return this.postService.post(params);
   }
 
-  @MessagePattern(CREATE_POST)
+  @MessagePattern(PostServiceHandler.CREATE_POST)
   create(params: Prisma.PostCreateInput): Observable<IPostDTO> {
     return this.postService.createPost(params);
   }
 
-  @MessagePattern(DELETE_POST)
+  @MessagePattern(PostServiceHandler.DELETE_POST)
   delete(id: number): Observable<IPostDTO> {
     return this.postService.deletePost({ id });
   }
 
-  @MessagePattern(UPDATE_POST)
+  @MessagePattern(PostServiceHandler.UPDATE_POST)
   update(req: {
     id: number;
     post: Prisma.PostUpdateInput;

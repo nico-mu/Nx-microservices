@@ -1,5 +1,7 @@
-export const GET_POST = 'get_posts';
-export const GET_POST_UNIQUE = 'post_get_unique';
-export const CREATE_POST = 'post_create';
-export const UPDATE_POST = 'post_update';
-export const DELETE_POST = 'post_delete';
+export enum PostServiceHandler {
+  GET_POSTS = 'get_posts',
+  GET_POST_UNIQUE = 'post_get_unique',
+  CREATE_POST = 'post_create',
+  UPDATE_POST = 'post_update',
+  DELETE_POST = 'post_delete',
+}

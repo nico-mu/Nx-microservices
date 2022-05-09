@@ -13,13 +13,7 @@ import {
 import { ClientProxy } from '@nestjs/microservices';
 import { ApiTags } from '@nestjs/swagger';
 import { IUserDTO } from '@nx-microservices/api-interfaces';
-import {
-  CREATE_USER,
-  DELETE_USER,
-  GET_USERS,
-  GET_USER_UNIQUE,
-  UPDATE_USER,
-} from '@nx-microservices/microservice-handler';
+import { UserServiceHandler } from '@nx-microservices/microservice-handler';
 import { Prisma } from '@prisma/client';
 import { Observable } from 'rxjs';
 
@@ -32,7 +26,7 @@ export class UserController {
 
   @Get()
   public getUsers(): Observable<IUserDTO> {
-    return this.userService.send(GET_USERS, '');
+    return this.userService.send(UserServiceHandler.GET_USERS, '');
   }
 
   @Get(':id')
@@ -43,7 +37,7 @@ export class UserController {
     )
     id: number
   ): Observable<IUserDTO> {
-    return this.userService.send(GET_USER_UNIQUE, {
+    return this.userService.send(UserServiceHandler.GET_USER_UNIQUE, {
       id: id,
     } as Prisma.UserWhereUniqueInput);
   }
@@ -52,7 +46,7 @@ export class UserController {
   public createUser(
     @Body() body: Prisma.UserCreateInput
   ): Observable<IUserDTO> {
-    return this.userService.send(CREATE_USER, body);
+    return this.userService.send(UserServiceHandler.CREATE_USER, body);
   }
 
   @Put(':id')
@@ -64,7 +58,10 @@ export class UserController {
     id: number,
     @Body() body: Prisma.UserUpdateInput
   ): Observable<IUserDTO> {
-    return this.userService.send(UPDATE_USER, { id, user: body });
+    return this.userService.send(UserServiceHandler.UPDATE_USER, {
+      id,
+      user: body,
+    });
   }
 
   @Delete(':id')
@@ -75,6 +72,6 @@ export class UserController {
     )
     id: number
   ): Observable<IUserDTO> {
-    return this.userService.send(DELETE_USER, id);
+    return this.userService.send(UserServiceHandler.DELETE_USER, id);
   }
 }

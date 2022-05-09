@@ -2,10 +2,8 @@ import { Controller, HttpStatus, Inject } from '@nestjs/common';
 import { ClientProxy, MessagePattern } from '@nestjs/microservices';
 import { IUserDTO } from '@nx-microservices/api-interfaces';
 import {
-  CREATE_USER,
-  GET_USER_UNIQUE,
-  LOGIN,
-  REGISTER,
+  AuthServiceHandler,
+  UserServiceHandler,
 } from '@nx-microservices/microservice-handler';
 import { HashingService } from '@nx-microservices/microservice-services';
 import { Prisma } from '@prisma/client';
@@ -18,7 +16,7 @@ export class AuthController {
     @Inject('USER_SERVICE') private readonly userService: ClientProxy
   ) {}
 
-  @MessagePattern(LOGIN)
+  @MessagePattern(AuthServiceHandler.LOGIN)
   login(body: {
     email?: string;
     username?: string;
@@ -27,7 +25,7 @@ export class AuthController {
     if (body.email || body.username) {
       return new Observable<IUserDTO>((observer) => {
         this.userService
-          .send(GET_USER_UNIQUE, {
+          .send(UserServiceHandler.GET_USER_UNIQUE, {
             username: body.username,
             email: body.email,
           } as Prisma.UserWhereUniqueInput)
@@ -69,11 +67,11 @@ export class AuthController {
     }
   }
 
-  @MessagePattern(REGISTER)
+  @MessagePattern(AuthServiceHandler.REGISTER)
   register(body: Prisma.UserCreateInput): Observable<IUserDTO> {
     // TODO: Throw Error on bad input
     if (body.email && body.username && body.password) {
-      return this.userService.send(CREATE_USER, body);
+      return this.userService.send(UserServiceHandler.CREATE_USER, body);
     }
     return of({
       error: { code: HttpStatus.BAD_REQUEST, message: 'Missing Parameter' },

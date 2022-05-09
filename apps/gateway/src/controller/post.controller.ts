@@ -13,13 +13,7 @@ import {
 import { ClientProxy } from '@nestjs/microservices';
 import { ApiTags } from '@nestjs/swagger';
 import { IPostDTO } from '@nx-microservices/api-interfaces';
-import {
-  CREATE_POST,
-  DELETE_POST,
-  GET_POST,
-  GET_POST_UNIQUE,
-  UPDATE_POST,
-} from '@nx-microservices/microservice-handler';
+import { PostServiceHandler } from '@nx-microservices/microservice-handler';
 import { Prisma } from '@prisma/client';
 import { Observable } from 'rxjs';
 
@@ -32,7 +26,7 @@ export class PostController {
 
   @Get()
   public getPosts(): Observable<IPostDTO> {
-    return this.postService.send(GET_POST, '');
+    return this.postService.send(PostServiceHandler.GET_POSTS, '');
   }
 
   @Get(':id')
@@ -43,14 +37,14 @@ export class PostController {
     )
     id: number
   ): Observable<IPostDTO> {
-    return this.postService.send(GET_POST_UNIQUE, { id });
+    return this.postService.send(PostServiceHandler.GET_POST_UNIQUE, { id });
   }
 
   @Post()
   public createPost(
     @Body() body: Prisma.PostCreateInput
   ): Observable<IPostDTO> {
-    return this.postService.send(CREATE_POST, body);
+    return this.postService.send(PostServiceHandler.CREATE_POST, body);
   }
 
   @Put(':id')
@@ -62,7 +56,10 @@ export class PostController {
     id: number,
     @Body() body: Prisma.PostUpdateInput
   ): Observable<IPostDTO> {
-    return this.postService.send(UPDATE_POST, { id, post: body });
+    return this.postService.send(PostServiceHandler.UPDATE_POST, {
+      id,
+      post: body,
+    });
   }
 
   @Delete(':id')
@@ -73,6 +70,6 @@ export class PostController {
     )
     id: number
   ): Observable<IPostDTO> {
-    return this.postService.send(DELETE_POST, id);
+    return this.postService.send(PostServiceHandler.DELETE_POST, id);
   }
 }

@@ -2,7 +2,7 @@ import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { ApiTags } from '@nestjs/swagger';
 import { IUserDTO } from '@nx-microservices/api-interfaces';
-import { LOGIN, REGISTER } from '@nx-microservices/microservice-handler';
+import { AuthServiceHandler } from '@nx-microservices/microservice-handler';
 import { Observable } from 'rxjs';
 
 @Controller('auth')
@@ -16,13 +16,13 @@ export class AuthController {
   public login(
     @Body() body: { username: string; password: string }
   ): Observable<IUserDTO> {
-    return this.authService.send(LOGIN, body);
+    return this.authService.send(AuthServiceHandler.LOGIN, body);
   }
 
   @Post('/register')
   public register(
     @Body() body: { username: string; password: string; email: string }
   ): Observable<IUserDTO> {
-    return this.authService.send(REGISTER, body);
+    return this.authService.send(AuthServiceHandler.REGISTER, body);
   }
 }
