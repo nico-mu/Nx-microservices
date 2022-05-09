@@ -4,7 +4,7 @@ import { IPostDTO } from '@nx-microservices/api-interfaces';
 import { PostServiceHandler } from '@nx-microservices/microservice-handler';
 import { Prisma, Post as PostModel } from '@prisma/client';
 import { Observable } from 'rxjs';
-import { PostService } from '../post/post.service';
+import { PostService } from './services/post.service';
 
 @Controller('posts')
 export class PostController {

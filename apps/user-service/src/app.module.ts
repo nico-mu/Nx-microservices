@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
-import { UserController } from './user/user.controller';
-import { UserModule } from './user/user.module';
+import {
+  HashingService,
+  PrismaService,
+} from '@nx-microservices/microservice-services';
+import { UserService } from './services/user.service';
+import { UserController } from './user.controller';
 
 @Module({
-  imports: [UserModule],
+  imports: [],
   controllers: [UserController],
-  providers: [],
+  providers: [UserService, PrismaService, HashingService],
+  exports: [UserService],
 })
 export class AppModule {}

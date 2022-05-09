@@ -2,9 +2,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Post } from '@prisma/client';
 import { IPostDTO } from '@nx-microservices/api-interfaces';
 import { Observable } from 'rxjs';
-import { PostService } from './post.service';
 import { PostController } from './post.controller';
 import { PrismaService } from '@nx-microservices/microservice-services';
+import { PostService } from './services/post.service';
 
 describe('PostController', () => {
   let postController: PostController;

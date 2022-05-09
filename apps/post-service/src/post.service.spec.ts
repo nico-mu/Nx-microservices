@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Post } from '@prisma/client';
 import { IPostDTO } from '@nx-microservices/api-interfaces';
-import { PostService } from './post.service';
 import { PrismaService } from '@nx-microservices/microservice-services';
+import { PostService } from './services/post.service';
 
 describe('PostService', () => {
   let postService: PostService;

@@ -4,7 +4,7 @@ import { IUserDTO } from '@nx-microservices/api-interfaces';
 import { UserServiceHandler } from '@nx-microservices/microservice-handler';
 import { Prisma, User as UserModel } from '@prisma/client';
 import { Observable } from 'rxjs';
-import { UserService } from '../user/user.service';
+import { UserService } from './services/user.service';
 
 @Controller('users')
 export class UserController {
