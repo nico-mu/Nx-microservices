@@ -28,7 +28,7 @@
     "@nestjs/microservices": "^8.4.4",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/swagger": "^5.2.1",
-    "@nrwl/angular": "14.0.3",
+    "@nrwl/angular": "14.1.4",
     "@prisma/client": "^3.13.0",
     "bcrypt": "^5.0.1",
     "reflect-metadata": "^0.1.13",
