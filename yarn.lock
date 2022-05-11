@@ -236,10 +236,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/language-service@~13.3.6":
-  version "13.3.6"
-  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-13.3.6.tgz#2dbb3a0a560659cf5cf3bf8b2b1c9a77adaf0229"
-  integrity sha512-T1ckdV2/oF2My4mO2MUMqP33S4jhjQ46gs1IR1si1bdKoRzaWmWb/T1H5rV2dfoDiah7rmlk1i1H1VJpSyTBWA==
+"@angular/language-service@~13.3.7":
+  version "13.3.7"
+  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-13.3.7.tgz#ff36f6f9a3ad152bfe9bdab6b2f0be8157b32696"
+  integrity sha512-l48mF8IfDyoSf1Unip8lDnR2QLKqMB6kd14Byb0UzKSCJAEwIsAxZWvzYLv9SviX0lMD+rmV+4hdnRJRq8Yu3w==
 
 "@angular/platform-browser-dynamic@~13.3.0":
   version "13.3.4"
@@ -1768,13 +1768,6 @@
     webpack "^5.58.1"
     webpack-merge "5.7.3"
 
-"@nrwl/cli@14.0.3":
-  version "14.0.3"
-  resolved "https://registry.npmjs.org/@nrwl/cli/-/cli-14.0.3.tgz"
-  integrity sha512-5zlBNQHLHXUCq6PashOhoI4+QoYjQahMd4hnNiTa/T08dCPnR974b7PHZj22QJnpeaBUKlGCjh5NSmUyPfDW2Q==
-  dependencies:
-    nx "14.0.3"
-
 "@nrwl/cli@14.1.4":
   version "14.1.4"
   resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-14.1.4.tgz#4d896bbfcb49f058711dd47a67c422297db03be9"
@@ -1800,18 +1793,6 @@
     tsconfig-paths-webpack-plugin "3.5.2"
     tslib "^2.3.0"
     webpack-node-externals "^3.0.0"
-
-"@nrwl/devkit@14.0.3":
-  version "14.0.3"
-  resolved "https://registry.npmjs.org/@nrwl/devkit/-/devkit-14.0.3.tgz"
-  integrity sha512-4ussrfGcuymnMvPc7mkqA9CyC2ytMEM6J+XfcmklaTDea+OzlW/T3tv015fz9YNNlhWAWHSXdkI3gmm3ypdiuQ==
-  dependencies:
-    ejs "^3.1.5"
-    ignore "^5.0.4"
-    nx "14.0.3"
-    rxjs "^6.5.4"
-    semver "7.3.4"
-    tslib "^2.3.0"
 
 "@nrwl/devkit@14.1.4":
   version "14.1.4"
@@ -1938,13 +1919,6 @@
     semver "7.3.4"
     ts-loader "^9.2.6"
     tsconfig-paths-webpack-plugin "3.5.2"
-
-"@nrwl/tao@14.0.3":
-  version "14.0.3"
-  resolved "https://registry.npmjs.org/@nrwl/tao/-/tao-14.0.3.tgz"
-  integrity sha512-DCk8ktLSUol/8wZN8TlXnHzId8CpOxQwdeSLrJLfsdealHvTrbF8c8b7mSbaSihZ5nDlsEuHWvJZNLWPxQHBJA==
-  dependencies:
-    nx "14.0.3"
 
 "@nrwl/tao@14.1.4":
   version "14.1.4"
@@ -2140,7 +2114,7 @@
   resolved "https://registry.yarnpkg.com/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.2.179.tgz#b943acee73a42763b9734a70a89d59a1228ecd14"
   integrity sha512-xA/pd6ri0eJ1bqQRT8h0xVa1wclFvLddp5mUhTEfxhtajrPkdriEUCoFOo4ySJhz86cjpTIoa81iq3XLpGQsMQ==
 
-"@swc/core@^1.2.119", "@swc/core@^1.2.152", "@swc/core@^1.2.173":
+"@swc/core@^1.2.119", "@swc/core@^1.2.173":
   version "1.2.179"
   resolved "https://registry.yarnpkg.com/@swc/core/-/core-1.2.179.tgz#9256b4d20a10b4b7d85e2b0fd7fc67aeaed2eb95"
   integrity sha512-B1O4acip37cNfMxKYG9Ptrrmcc3mcklFnSuRT9UtHr92Nq26o7omuturK0HCoKqLVReU05psfhDzx+K6H1tbNQ==
@@ -4372,7 +4346,7 @@ ee-first@1.1.1:
   resolved "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
-ejs@^3.1.5, ejs@^3.1.7:
+ejs@^3.1.7:
   version "3.1.7"
   resolved "https://registry.npmjs.org/ejs/-/ejs-3.1.7.tgz"
   integrity sha512-BIar7R6abbUxDA3bfXrO4DSgwo8I+fB5/1zgujl3HLLjwd6+9iOnrT+t3grn2qbk9vOgBubXOFwX2m9axoFaGw==
@@ -7446,45 +7420,6 @@ nwsapi@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/nwsapi/-/nwsapi-2.2.0.tgz"
   integrity sha512-h2AatdwYH+JHiZpv7pt/gSX1XoRGb7L/qSIeuqA6GwYoF9w1vP1cw42TO0aI2pNyshRK5893hNSl+1//vHK7hQ==
-
-nx@14.0.3:
-  version "14.0.3"
-  resolved "https://registry.npmjs.org/nx/-/nx-14.0.3.tgz"
-  integrity sha512-p5MARLvRv3oxBT3EDq3ihg3Qb0NQEaIOWwthmZeKmEoRqYbZpM3dWbwlbN6yGdXJJPqtEW/IsffgGHl9m+7Vsw==
-  dependencies:
-    "@nrwl/cli" "14.0.3"
-    "@nrwl/tao" "14.0.3"
-    "@parcel/watcher" "2.0.4"
-    "@swc-node/register" "^1.4.2"
-    "@swc/core" "^1.2.152"
-    chalk "4.1.0"
-    chokidar "^3.5.1"
-    cli-cursor "3.1.0"
-    cli-spinners "2.6.1"
-    cliui "^7.0.2"
-    dotenv "~10.0.0"
-    enquirer "~2.3.6"
-    fast-glob "3.2.7"
-    figures "3.2.0"
-    flat "^5.0.2"
-    fs-extra "^9.1.0"
-    glob "7.1.4"
-    ignore "^5.0.4"
-    jsonc-parser "3.0.0"
-    minimatch "3.0.4"
-    npm-run-path "^4.0.1"
-    open "^8.4.0"
-    rxjs "^6.5.4"
-    rxjs-for-await "0.0.2"
-    semver "7.3.4"
-    string-width "^4.2.3"
-    tar-stream "~2.2.0"
-    tmp "~0.2.1"
-    tsconfig-paths "^3.9.0"
-    tslib "^2.3.0"
-    v8-compile-cache "2.3.0"
-    yargs "^17.4.0"
-    yargs-parser "21.0.1"
 
 nx@14.1.4:
   version "14.1.4"
