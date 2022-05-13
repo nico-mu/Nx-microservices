@@ -1782,25 +1782,6 @@
   dependencies:
     nx "14.1.5"
 
-"@nrwl/cypress@14.1.4":
-  version "14.1.4"
-  resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-14.1.4.tgz#7ac38ead60afee62e1d253f958bba7f575e2b698"
-  integrity sha512-3uokpFludvqms8SWEG3vQyitM6zooHSx0yTKni0NuF0Ce4v359GOY00ijZLORUxla7y1jVe8b8x/BHxEem+ZmQ==
-  dependencies:
-    "@cypress/webpack-preprocessor" "^5.9.1"
-    "@nrwl/devkit" "14.1.4"
-    "@nrwl/linter" "14.1.4"
-    "@nrwl/workspace" "14.1.4"
-    chalk "4.1.0"
-    enhanced-resolve "^5.8.3"
-    fork-ts-checker-webpack-plugin "6.2.10"
-    rxjs "^6.5.4"
-    ts-loader "^9.2.6"
-    tsconfig-paths "^3.9.0"
-    tsconfig-paths-webpack-plugin "3.5.2"
-    tslib "^2.3.0"
-    webpack-node-externals "^3.0.0"
-
 "@nrwl/cypress@14.1.5":
   version "14.1.5"
   resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-14.1.5.tgz#c1a317aa72bfd41d6e87be924a337ecceb8ed69f"
