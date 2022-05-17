@@ -1816,6 +1816,17 @@
     semver "7.3.4"
     tslib "^2.3.0"
 
+"@nrwl/devkit@14.1.6":
+  version "14.1.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-14.1.6.tgz#b11170dd71d62751aba480773b1a26488ccce669"
+  integrity sha512-AR/hOPEtFyHGj8ZLkddorehHI1Ac50eWhgHY3zhgIl86ZelNJZJQpGyEmoJOmKs6P9m38kUCoinn4jnfuh1EKQ==
+  dependencies:
+    ejs "^3.1.7"
+    ignore "^5.0.4"
+    rxjs "^6.5.4"
+    semver "7.3.4"
+    tslib "^2.3.0"
+
 "@nrwl/eslint-plugin-nx@14.1.5":
   version "14.1.5"
   resolved "https://registry.yarnpkg.com/@nrwl/eslint-plugin-nx/-/eslint-plugin-nx-14.1.5.tgz#a133574042654a69905cb885f3958f5fd1c57c32"
@@ -1861,6 +1872,23 @@
     rxjs "^6.5.4"
     tslib "^2.3.0"
 
+"@nrwl/jest@14.1.6":
+  version "14.1.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-14.1.6.tgz#2fc960ad815f9776fc73a593a43ef58297f0e72f"
+  integrity sha512-aYoNT9N2ar2aeIu9xYmjEWbNaWi9A8z3REhMTtL+Z649EaGzOxGnI3FUU6PUZH4H4J6nP4ni15Hiu3jeaIPa8w==
+  dependencies:
+    "@jest/reporters" "27.5.1"
+    "@jest/test-result" "27.5.1"
+    "@nrwl/devkit" "14.1.6"
+    chalk "4.1.0"
+    identity-obj-proxy "3.0.0"
+    jest-config "27.5.1"
+    jest-resolve "27.5.1"
+    jest-util "27.5.1"
+    resolve.exports "1.1.0"
+    rxjs "^6.5.4"
+    tslib "^2.3.0"
+
 "@nrwl/js@14.1.5":
   version "14.1.5"
   resolved "https://registry.yarnpkg.com/@nrwl/js/-/js-14.1.5.tgz#42e75a17ba74b5cb5d2d774e7226a12d08382db3"
@@ -1887,6 +1915,17 @@
   dependencies:
     "@nrwl/devkit" "14.1.5"
     "@nrwl/jest" "14.1.5"
+    "@phenomnomnominal/tsquery" "4.1.1"
+    tmp "~0.2.1"
+    tslib "^2.3.0"
+
+"@nrwl/linter@14.1.6":
+  version "14.1.6"
+  resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-14.1.6.tgz#d134d39d14a46c6729e17573647e607f81312569"
+  integrity sha512-loQx6/Ze4PyKS5Py6zIsegUtb6L1SzYLOitwQAXumKxCRhK9JRIOcA8yNfgAOD/umMg4FoDVv8FPiI+IG0Amgw==
+  dependencies:
+    "@nrwl/devkit" "14.1.6"
+    "@nrwl/jest" "14.1.6"
     "@phenomnomnominal/tsquery" "4.1.1"
     tmp "~0.2.1"
     tslib "^2.3.0"
