@@ -1764,18 +1764,18 @@
     node-gyp "^8.2.0"
     read-package-json-fast "^2.0.1"
 
-"@nrwl/angular@14.1.5":
-  version "14.1.5"
-  resolved "https://registry.yarnpkg.com/@nrwl/angular/-/angular-14.1.5.tgz#f3eb9f4e62732280c7ba90d527a006ce722dc7c1"
-  integrity sha512-iLF9VeTM1jXEvGI7Cvy6isWS3b54ir3LScj+b6x1kWWn03zFh/jWIGHmgYBCrkBPf/ACpZNkftpusMer0s9Pig==
+"@nrwl/angular@14.1.7":
+  version "14.1.7"
+  resolved "https://registry.yarnpkg.com/@nrwl/angular/-/angular-14.1.7.tgz#5f6c1c75c2195aa7db878179b1cab0f98a650d0b"
+  integrity sha512-3w5c78DProyFek2DK4EUiKDK2ZvuurNbbrrV8cHMrGLhOegFStKqEdvVugeVz1O+C4sq0iAtTpp/vRTZTOOvtg==
   dependencies:
     "@angular-devkit/schematics" "~13.3.0"
-    "@nrwl/cypress" "14.1.5"
-    "@nrwl/devkit" "14.1.5"
-    "@nrwl/jest" "14.1.5"
-    "@nrwl/linter" "14.1.5"
-    "@nrwl/storybook" "14.1.5"
-    "@nrwl/workspace" "14.1.5"
+    "@nrwl/cypress" "14.1.7"
+    "@nrwl/devkit" "14.1.7"
+    "@nrwl/jest" "14.1.7"
+    "@nrwl/linter" "14.1.7"
+    "@nrwl/storybook" "14.1.7"
+    "@nrwl/workspace" "14.1.7"
     "@phenomnomnominal/tsquery" "4.1.1"
     "@schematics/angular" "~13.3.0"
     chalk "4.1.0"
@@ -1814,6 +1814,25 @@
     "@nrwl/devkit" "14.1.5"
     "@nrwl/linter" "14.1.5"
     "@nrwl/workspace" "14.1.5"
+    chalk "4.1.0"
+    enhanced-resolve "^5.8.3"
+    fork-ts-checker-webpack-plugin "6.2.10"
+    rxjs "^6.5.4"
+    ts-loader "^9.2.6"
+    tsconfig-paths "^3.9.0"
+    tsconfig-paths-webpack-plugin "3.5.2"
+    tslib "^2.3.0"
+    webpack-node-externals "^3.0.0"
+
+"@nrwl/cypress@14.1.7":
+  version "14.1.7"
+  resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-14.1.7.tgz#368a41c19e65c8698525ccc3833c7538dd2cccd7"
+  integrity sha512-iBLp2VtJ+XiP6ZUaNOgSYz+WQpbtlcTYp82xojMRufqRVurDup7wcErhvapDAlect+emS5hsvr9UV5UbIGB7Jg==
+  dependencies:
+    "@cypress/webpack-preprocessor" "^5.9.1"
+    "@nrwl/devkit" "14.1.7"
+    "@nrwl/linter" "14.1.7"
+    "@nrwl/workspace" "14.1.7"
     chalk "4.1.0"
     enhanced-resolve "^5.8.3"
     fork-ts-checker-webpack-plugin "6.2.10"
@@ -2003,15 +2022,15 @@
     webpack-merge "^5.8.0"
     webpack-node-externals "^3.0.0"
 
-"@nrwl/storybook@14.1.5":
-  version "14.1.5"
-  resolved "https://registry.yarnpkg.com/@nrwl/storybook/-/storybook-14.1.5.tgz#4f63c293f0dff2089006a81d40a4d2eafa1c838c"
-  integrity sha512-YaKdSji8QTrnTpcmqdJGCuhuWqCxZFl+jan2rD+YrotFo2cwIcbHjXovMbiFHCIeAD0XpWxymjWbsCDzz03IqA==
+"@nrwl/storybook@14.1.7":
+  version "14.1.7"
+  resolved "https://registry.yarnpkg.com/@nrwl/storybook/-/storybook-14.1.7.tgz#a73c2641a277c3f77e5347447b3d30adff04d8b0"
+  integrity sha512-sFtvzkx5y//4ANNhYuJ6Sc0CR1v2SIuk72OFtwleXBRWH6fpOx13qHjv/afov4WqWVnyuEcCMBI+h2AudC6jdg==
   dependencies:
-    "@nrwl/cypress" "14.1.5"
-    "@nrwl/devkit" "14.1.5"
-    "@nrwl/linter" "14.1.5"
-    "@nrwl/workspace" "14.1.5"
+    "@nrwl/cypress" "14.1.7"
+    "@nrwl/devkit" "14.1.7"
+    "@nrwl/linter" "14.1.7"
+    "@nrwl/workspace" "14.1.7"
     core-js "^3.6.5"
     semver "7.3.4"
     ts-loader "^9.2.6"
