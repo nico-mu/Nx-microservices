@@ -1817,10 +1817,10 @@
     tslib "^2.3.0"
     webpack-node-externals "^3.0.0"
 
-"@nrwl/devkit@14.1.4":
-  version "14.1.4"
-  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-14.1.4.tgz#7cabec88109ec8fec60b11aba7cbfddc4b9e771e"
-  integrity sha512-Q7/cDrULhqdbfPRp8N0x9y67r49ApzYG+CVEXI8VowwHFAI3zCr/PNlzsfuLL4l2Uj0jYOt+LPoNbFZuCLAQLA==
+"@nrwl/devkit@14.1.7":
+  version "14.1.7"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-14.1.7.tgz#7a253f41b936d611a11633438d77a138445c8245"
+  integrity sha512-4dZIzE+jIPzGSwWTGbQ9uWODHGZMdQctsLhMhcrZrEpPcmZQLbYEbx2bRh6EsNFkreSZxZREdwkWuFTb05cs/w==
   dependencies:
     ejs "^3.1.7"
     ignore "^5.0.4"
@@ -1828,10 +1828,10 @@
     semver "7.3.4"
     tslib "^2.3.0"
 
-"@nrwl/devkit@14.1.7":
-  version "14.1.7"
-  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-14.1.7.tgz#7a253f41b936d611a11633438d77a138445c8245"
-  integrity sha512-4dZIzE+jIPzGSwWTGbQ9uWODHGZMdQctsLhMhcrZrEpPcmZQLbYEbx2bRh6EsNFkreSZxZREdwkWuFTb05cs/w==
+"@nrwl/devkit@14.1.9":
+  version "14.1.9"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-14.1.9.tgz#54c808e19bb95d56c7ccb0c44ba1bc710d979d2b"
+  integrity sha512-y+gqtluiOZ/wiAXb5Z4FfzroyB/+cLP5zHXQTNuuuVC9U25RiuGK8RL+Wg91VWzHCu7E+oMtCToNw7MWDRGFDg==
   dependencies:
     ejs "^3.1.7"
     ignore "^5.0.4"
@@ -1850,14 +1850,14 @@
     chalk "4.1.0"
     confusing-browser-globals "^1.0.9"
 
-"@nrwl/jest@14.1.4":
-  version "14.1.4"
-  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-14.1.4.tgz#c69ad97913fba78ae9eabce83c9cec324a29881b"
-  integrity sha512-Me8r3QY080gVtEtD3F3FkQI7NU0MJl1PjU+qEcBejk5+NJD31LtPoIW4XHYdep/dPC/Og+m+QWopKK97K7Yuaw==
+"@nrwl/jest@14.1.7":
+  version "14.1.7"
+  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-14.1.7.tgz#fe3841e1312206e947c75ffb0f0f346abde3e028"
+  integrity sha512-2Z+1dA4gadrEzUXfhd0n5BojUkGSVr3chHsVoWnBh3zSVrIM3gVKJx0wwVVQYhqkVylkpG+bXSUTrUa23LOaeg==
   dependencies:
     "@jest/reporters" "27.5.1"
     "@jest/test-result" "27.5.1"
-    "@nrwl/devkit" "14.1.4"
+    "@nrwl/devkit" "14.1.7"
     chalk "4.1.0"
     identity-obj-proxy "3.0.0"
     jest-config "27.5.1"
@@ -1867,14 +1867,15 @@
     rxjs "^6.5.4"
     tslib "^2.3.0"
 
-"@nrwl/jest@14.1.7":
-  version "14.1.7"
-  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-14.1.7.tgz#fe3841e1312206e947c75ffb0f0f346abde3e028"
-  integrity sha512-2Z+1dA4gadrEzUXfhd0n5BojUkGSVr3chHsVoWnBh3zSVrIM3gVKJx0wwVVQYhqkVylkpG+bXSUTrUa23LOaeg==
+"@nrwl/jest@14.1.9":
+  version "14.1.9"
+  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-14.1.9.tgz#c6c1c8fa96b17aa6225a1d607eea37ea85233d58"
+  integrity sha512-rZ/+X7OzhW8nKLaYOpbIwUKzEAIDLlQd/m6qndAKU1rbSOZZVa7ZwHRQpzBMooyXCQB/wJLTM+epAI6vWjCiNg==
   dependencies:
     "@jest/reporters" "27.5.1"
     "@jest/test-result" "27.5.1"
-    "@nrwl/devkit" "14.1.7"
+    "@nrwl/devkit" "14.1.9"
+    "@phenomnomnominal/tsquery" "4.1.1"
     chalk "4.1.0"
     identity-obj-proxy "3.0.0"
     jest-config "27.5.1"
