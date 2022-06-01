@@ -1783,18 +1783,18 @@
     node-gyp "^8.2.0"
     read-package-json-fast "^2.0.1"
 
-"@nrwl/angular@14.1.7":
-  version "14.1.7"
-  resolved "https://registry.yarnpkg.com/@nrwl/angular/-/angular-14.1.7.tgz#5f6c1c75c2195aa7db878179b1cab0f98a650d0b"
-  integrity sha512-3w5c78DProyFek2DK4EUiKDK2ZvuurNbbrrV8cHMrGLhOegFStKqEdvVugeVz1O+C4sq0iAtTpp/vRTZTOOvtg==
+"@nrwl/angular@14.1.9":
+  version "14.1.9"
+  resolved "https://registry.yarnpkg.com/@nrwl/angular/-/angular-14.1.9.tgz#75b0d59cdf36ea8c7cb98c238d52bc7a071012d9"
+  integrity sha512-xsZoRb9MMkFYLdLtZpi/KasMHdOSQX7whJkZ5k1a0UON2lPsSzD/laNFy3tRuCfmkjRrh2TnXREP+8PYtB21IA==
   dependencies:
     "@angular-devkit/schematics" "~13.3.0"
-    "@nrwl/cypress" "14.1.7"
-    "@nrwl/devkit" "14.1.7"
-    "@nrwl/jest" "14.1.7"
-    "@nrwl/linter" "14.1.7"
-    "@nrwl/storybook" "14.1.7"
-    "@nrwl/workspace" "14.1.7"
+    "@nrwl/cypress" "14.1.9"
+    "@nrwl/devkit" "14.1.9"
+    "@nrwl/jest" "14.1.9"
+    "@nrwl/linter" "14.1.9"
+    "@nrwl/storybook" "14.1.9"
+    "@nrwl/workspace" "14.1.9"
     "@phenomnomnominal/tsquery" "4.1.1"
     "@schematics/angular" "~13.3.0"
     chalk "4.1.0"
@@ -1843,21 +1843,29 @@
     tslib "^2.3.0"
     webpack-node-externals "^3.0.0"
 
+"@nrwl/cypress@14.1.9":
+  version "14.1.9"
+  resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-14.1.9.tgz#8e27564f70e4b0491376537c2f06a97d80459dd5"
+  integrity sha512-PdWy3FxCvu4F2Avh2t0nb8zwNoPus9jI5xDAZSLYjgyDENekmGxNPI11sYNmpsaUGb8pb1oUCeS31kticBOlrA==
+  dependencies:
+    "@cypress/webpack-preprocessor" "^5.9.1"
+    "@nrwl/devkit" "14.1.9"
+    "@nrwl/linter" "14.1.9"
+    "@nrwl/workspace" "14.1.9"
+    chalk "4.1.0"
+    enhanced-resolve "^5.8.3"
+    fork-ts-checker-webpack-plugin "6.2.10"
+    rxjs "^6.5.4"
+    ts-loader "^9.2.6"
+    tsconfig-paths "^3.9.0"
+    tsconfig-paths-webpack-plugin "3.5.2"
+    tslib "^2.3.0"
+    webpack-node-externals "^3.0.0"
+
 "@nrwl/devkit@14.1.7":
   version "14.1.7"
   resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-14.1.7.tgz#7a253f41b936d611a11633438d77a138445c8245"
   integrity sha512-4dZIzE+jIPzGSwWTGbQ9uWODHGZMdQctsLhMhcrZrEpPcmZQLbYEbx2bRh6EsNFkreSZxZREdwkWuFTb05cs/w==
-  dependencies:
-    ejs "^3.1.7"
-    ignore "^5.0.4"
-    rxjs "^6.5.4"
-    semver "7.3.4"
-    tslib "^2.3.0"
-
-"@nrwl/devkit@14.1.9":
-  version "14.1.9"
-  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-14.1.9.tgz#54c808e19bb95d56c7ccb0c44ba1bc710d979d2b"
-  integrity sha512-y+gqtluiOZ/wiAXb5Z4FfzroyB/+cLP5zHXQTNuuuVC9U25RiuGK8RL+Wg91VWzHCu7E+oMtCToNw7MWDRGFDg==
   dependencies:
     ejs "^3.1.7"
     ignore "^5.0.4"
@@ -1895,24 +1903,6 @@
     "@jest/reporters" "27.5.1"
     "@jest/test-result" "27.5.1"
     "@nrwl/devkit" "14.1.7"
-    chalk "4.1.0"
-    identity-obj-proxy "3.0.0"
-    jest-config "27.5.1"
-    jest-resolve "27.5.1"
-    jest-util "27.5.1"
-    resolve.exports "1.1.0"
-    rxjs "^6.5.4"
-    tslib "^2.3.0"
-
-"@nrwl/jest@14.1.9":
-  version "14.1.9"
-  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-14.1.9.tgz#c6c1c8fa96b17aa6225a1d607eea37ea85233d58"
-  integrity sha512-rZ/+X7OzhW8nKLaYOpbIwUKzEAIDLlQd/m6qndAKU1rbSOZZVa7ZwHRQpzBMooyXCQB/wJLTM+epAI6vWjCiNg==
-  dependencies:
-    "@jest/reporters" "27.5.1"
-    "@jest/test-result" "27.5.1"
-    "@nrwl/devkit" "14.1.9"
-    "@phenomnomnominal/tsquery" "4.1.1"
     chalk "4.1.0"
     identity-obj-proxy "3.0.0"
     jest-config "27.5.1"
@@ -2074,15 +2064,15 @@
     webpack-merge "^5.8.0"
     webpack-node-externals "^3.0.0"
 
-"@nrwl/storybook@14.1.7":
-  version "14.1.7"
-  resolved "https://registry.yarnpkg.com/@nrwl/storybook/-/storybook-14.1.7.tgz#a73c2641a277c3f77e5347447b3d30adff04d8b0"
-  integrity sha512-sFtvzkx5y//4ANNhYuJ6Sc0CR1v2SIuk72OFtwleXBRWH6fpOx13qHjv/afov4WqWVnyuEcCMBI+h2AudC6jdg==
+"@nrwl/storybook@14.1.9":
+  version "14.1.9"
+  resolved "https://registry.yarnpkg.com/@nrwl/storybook/-/storybook-14.1.9.tgz#772502d876d3f895e6770b4da7ed147300424f74"
+  integrity sha512-tmYT++Esc+DNt/VQ+04CgdncyUQ7qtUlYpuX6wEfXCqE6Uxvf91ZnDl9jQYNLG6IezLgCvDxJU8+H04fFgp3Mw==
   dependencies:
-    "@nrwl/cypress" "14.1.7"
-    "@nrwl/devkit" "14.1.7"
-    "@nrwl/linter" "14.1.7"
-    "@nrwl/workspace" "14.1.7"
+    "@nrwl/cypress" "14.1.9"
+    "@nrwl/devkit" "14.1.9"
+    "@nrwl/linter" "14.1.9"
+    "@nrwl/workspace" "14.1.9"
     core-js "^3.6.5"
     semver "7.3.4"
     ts-loader "^9.2.6"
