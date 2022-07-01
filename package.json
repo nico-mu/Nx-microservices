@@ -49,7 +49,7 @@
     "@nestjs/testing": "^8.4.6",
     "@nrwl/cli": "14.3.6",
     "@nrwl/cypress": "14.1.9",
-    "@nrwl/devkit": "14.1.9",
+    "@nrwl/devkit": "14.3.6",
     "@nrwl/eslint-plugin-nx": "14.1.9",
     "@nrwl/jest": "14.3.6",
     "@nrwl/linter": "14.1.9",
